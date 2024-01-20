@@ -3,8 +3,8 @@ from resourcehub import db
 
 class User(db.Model):
     # schema for the User model
-    id = db.column(db.Integer, primary_key=True)
-    username = db.column(db.String(20), unique=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     resources = db.relationship("Resource", backref="user", cascade="all, delete", lazy=True)
@@ -18,9 +18,10 @@ class Resource(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     resource_name = db.Column(db.String(50), unique=True, nullable=False)
     resource_description = db.Column(db.Text, nullable=False)
-    url = 
-    date_created = db.Column(db.Date, nullable=False)
+    url = db.Column(db.String(250), nullable=False)
+    date_created = db.Column(db.DateTime(), default=datetime.utcnow, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    comments = db.relationship("Comment", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         return self 
@@ -29,7 +30,7 @@ class Resource(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False)
+    date_posted = db.Column(db.DateTime(), default=datetime.utcnow, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
     resource_id = db.Column(db.Integer, db.ForeignKey("resource.id", ondelete="CASCADE"), nullable=False)
 
@@ -45,13 +46,22 @@ class Subject(db.Model):
         return self.name
 
 
+class EducationLevelEnum(Enum):
+    KS0 = "Early Years"
+    KS1 = "Primary KS1"
+    KS2 = "Primary KS2"
+    KS3 = "Secondary KS3"
+    GCSE = "Secondary GCSE (KS4)"
+    ASLEVEL = "AS-Level"
+    ALEVEL = "A-Level"
 
-class AgeRange(db.model):
+
+class EducationLevel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.String(10), unique=True, nullable=False)
+    level = db.Column(db.Enum(EducationLevelEnum), nullable=False)
 
     def __repr__(self):
-        return self.age
+        return self.level
 
 
 # Resource and Subject many-to-many relationship
