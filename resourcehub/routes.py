@@ -8,9 +8,10 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return "<p>Login</p>"
+    
+    return render_template("login.html")
 
 
 @app.route("/logout")
@@ -18,6 +19,6 @@ def logout():
     return "<p>Logout</p>"
 
 
-@app.route("/signup")
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    return "<p>Signup</p>"
+    return render_template("signup.html")
