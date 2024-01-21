@@ -3,10 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>Teacher Resource Hub</title>
 </head>
 <body>
-    
+
+    <header>
+        <!-- Dropdown Structure in Navbar -->
+        <ul id="dropdown" class="dropdown-content">
+            <li><a href="#">Biology</a></li>
+            <li><a href="#">Chemistry</a></li>
+            <li><a href="#">Physics</a></li>
+        </ul>
+
+        <!-- Navbar -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">Logo</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="#">Home</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-trigger" href="#" data-target="dropdown">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
+                        <li><a href="#" class="waves-effect waves-light btn">Sign Up/Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Sidenav -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#">Home</a></li>
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#" data-target="dropdown">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
+            <li><a href="#" class="waves-effect waves-light btn">Sign Up/Login</a></li>
+        </ul>
+    </header>
 
     <main class="container">
         {% block content %}
