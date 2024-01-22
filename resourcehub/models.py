@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.Text, nullable=False)
     resources = db.relationship("Resource", backref="user", cascade="all, delete", lazy=True)
     comments = db.relationship("Comment", backref="user", cascade="all, delete", lazy=True)
 

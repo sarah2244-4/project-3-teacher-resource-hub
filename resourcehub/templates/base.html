@@ -49,6 +49,35 @@
     </header>
 
     <main class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == "error" %}
+            <!-- Alert for error message -->
+            <div class="alert alert-danger card amber lighten-4 brown-text" role="alert">
+                <div class="card-content">
+                    <p><i class="fa-solid fa-circle-exclamation"></i> 
+                     {{ message }}
+                     <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+                </div>
+            </div>
+
+            {% else %}
+            <!-- Alert for success message -->
+            <div class="alert alert-success card green lighten-4 green-text text-darken-4" role="alert">
+                <div class="card-content">
+                    <p><i class="fa-solid fa-circle-check"></i> 
+                     {{ message }}
+                     <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+                </div>
+                
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
         {% block content %}
         {% endblock %}
     </main>
