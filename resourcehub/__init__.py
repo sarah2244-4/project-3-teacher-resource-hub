@@ -15,8 +15,6 @@ db = SQLAlchemy(app)
 app.app_context().push()
 migrate = Migrate(app, db)
 
-from resourcehub import routes  # noqa
-
 login_manager = LoginManager()
 login_manager.login_view = "home"
 login_manager.init_app(app)
@@ -24,3 +22,7 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+from resourcehub import routes, models  # noqa
+from resourcehub.models import User
+
