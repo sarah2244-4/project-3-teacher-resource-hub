@@ -2,7 +2,7 @@ from flask import render_template, flash, url_for, request, redirect
 from resourcehub import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
-
+from flask_login import login_user, login_required, logout_user, current_user
 
 @app.route("/")
 def home():
@@ -19,18 +19,21 @@ def login():
         if user: 
             if check_password_hash(user.password, password):
                 flash("Logged in successfully", category="success")
+                login_user(user, remember=True)
             else: 
                 flash("Incorrect password, try again.", category="error")
         else:
             flash("Email does not exist.", category="error")
 
 
-    return render_template("login.html")
+    return render_template("index.html")
 
 
 @app.route("/logout")
+@login_required
 def logout():
-    return "<p>Logout</p>"
+    logout_user()
+    return redirect(url_for("login"))
 
 
 @app.route("/signup", methods=["GET", "POST"])
