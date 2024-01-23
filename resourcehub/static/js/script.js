@@ -8,4 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// sidenav initialization
 	let sidenav = document.querySelectorAll(".sidenav");
 	M.Sidenav.init(sidenav);
+	// form select initialization
+	let select = document.querySelectorAll("select");
+	M.FormSelect.init(select);
 });

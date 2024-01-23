@@ -8,7 +8,7 @@
 <div class="container-fluid">
     
     <h3>Your Resources:</h3>
-    <button class="btn">Add</button>
+    <a class="btn" href="{{ url_for('add_category') }}">Add</a>
     <!-- <div class="section"></div> -->
 
     {% for resources in resource %}
@@ -17,8 +17,11 @@
             <div class="card">
                 <div class="card-image">
                     <img src="#">
-                    <span class="card-title">{{ title }}</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i class="fa-solid fa-plus"></i></a>
+                    <span class="card-title">{{ resource.resource_title }}</span>
+                    <!-- Edit button -->
+                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{ url_for('edit_resource', resource_id=category.id) }}"><i class="fa-solid fa-plus"></i></a>
+                    <!-- Delete button -->
+                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="#modal-{{ category.id }}"><i class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="card-content">
                     <p>{{ brief_description }}</p>

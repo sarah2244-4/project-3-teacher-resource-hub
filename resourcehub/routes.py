@@ -7,13 +7,25 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", user=current_user)
 
 
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template("profile.html", username=current_user.username)
+    resources = list(Resource.query.order_by(Resource.date_created).all())
+    return render_template("profile.html", user=current_user, username=current_user.username, resources=resources)
+
+
+@app.route("/add_resource", methods=["GET", "POST"])
+def add_resource():
+    if request.method == "POST":
+        resource = Resource(resource_name=request.form.get("resource_title"), resource_description=request.form.get("resource_description"), url=request.form.get("url"), user_id=current_user.id)
+        db.session.add(resource)
+        db.session.commit()
+        flash("Resource added successfully", category="success")
+        return redirect(url_for("profile"))
+    return render_template("add_resource.html", user=current_user, username=current_user.username)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -32,6 +44,8 @@ def login():
                 flash("Incorrect password, try again.", category="error")
         else:
             flash("Email does not exist.", category="error")
+
+    return render_template("login.html", user=current_user)
 
 
 
@@ -60,6 +74,7 @@ def signup():
             new_user = User(username=username, email=email, password=generate_password_hash(password))
             db.session.add(new_user)
             db.session.commit()
-            return redirect(url_for("login"))
+            login_user(new_user, remember=True)
+            return redirect(url_for("profile"))
 
-    return render_template("signup.html")
+    return render_template("signup.html", user=current_user)
