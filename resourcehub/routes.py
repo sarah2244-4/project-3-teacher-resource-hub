@@ -1,7 +1,7 @@
 from flask import render_template, flash, url_for, request, redirect
 from resourcehub import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
+from resourcehub.models import User, Resource, Comment, Subject, SubjectEnum, EducationLevel, EducationLevelEnum
 from flask_login import login_user, login_required, logout_user, current_user
 
 
@@ -19,13 +19,26 @@ def profile():
 
 @app.route("/add_resource", methods=["GET", "POST"])
 def add_resource():
+    subjects = list(SubjectEnum)
+    educationlevels = list(EducationLevelEnum)
+
     if request.method == "POST":
-        resource = Resource(resource_name=request.form.get("resource_title"), resource_description=request.form.get("resource_description"), url=request.form.get("url"), user_id=current_user.id)
-        db.session.add(resource)
+        resource_title = request.form.get("resource_title")
+        resource_description = request.form.get("resource_description")
+        url = request.form.get("url")
+        selected_subjects = request.form.getlist("subjects")
+        new_resource = Resource(
+            resource_name=resource_title,
+            resource_description=resource_description,
+            url=url,
+            user_id=current_user.id
+        )
+        db.session.add(new_resource)
+
         db.session.commit()
         flash("Resource added successfully", category="success")
         return redirect(url_for("profile"))
-    return render_template("add_resource.html", user=current_user, username=current_user.username)
+    return render_template("add_resource.html", user=current_user, username=current_user.username, subjects=subjects, educationlevels=educationlevels)
 
 
 @app.route("/login", methods=["GET", "POST"])

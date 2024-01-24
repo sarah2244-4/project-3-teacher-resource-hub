@@ -43,10 +43,16 @@ class Comment(db.Model):
         return self.comment_text
 
 
+class SubjectEnum(Enum):
+    BIOLOGY = "Biology"
+    CHEMISTRY = "Chemistry"
+    PHYSICS = "Physics"
+
+
 class Subject(db.Model):
     """ Schema for the Subject Model """
     id = db.Column(db.Integer, primary_key=True)
-    subject_name = db.Column(db.String(50), unique=True, nullable=False)
+    subject_name = db.Column(db.Enum(SubjectEnum), unique=True, nullable=False)
 
     def __repr__(self):
         return self.subject_name
@@ -54,11 +60,8 @@ class Subject(db.Model):
 
 class EducationLevelEnum(Enum):
     """ Enum for the Education levels """
-    KS0 = "Early Years"
-    KS1 = "Primary KS1"
-    KS2 = "Primary KS2"
-    KS3 = "Secondary KS3"
-    GCSE = "Secondary GCSE (KS4)"
+    KS3 = "KS3"
+    GCSE = "GCSE"
     ASLEVEL = "AS-Level"
     ALEVEL = "A-Level"
 

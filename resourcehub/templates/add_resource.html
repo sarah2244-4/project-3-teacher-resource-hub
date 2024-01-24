@@ -23,37 +23,14 @@
         <div class="input-field col s12">
             <select multiple required>
                 <option value="" disabled selected>Choose your subject</option>
-                <!-- <optgroup label="Biology">
-                    <option value="1">KS3</option>
-                    <option value="2">GCSE</option>
-                    <option value="3">A-Level</option>
-                </optgroup>
-                <optgroup label="Chemistry">
-                    <option value="4">KS3</option>
-                    <option value="5">GCSE</option>
-                    <option value="6">A-Level</option>
-                </optgroup>
-                <optgroup label="Physics">
-                    <option value="7">KS3</option>
-                    <option value="8">GCSE</option>
-                    <option value="9">A-Level</option>
-                </optgroup> -->
 
                 {% for subject in subjects %}
-                <optgroup label="{{ subject.subject_name }}">
-                    {% for educationlevel in educationlevels if educationlevel.subject == subject %}
-                        <option value="{{ educationlevel.id }}">{{ educationlevel.level }}</option>
+                <optgroup label="{{ subject.name }}">
+                    {% for educationlevel in educationlevels %}
+                            <option value="{{ educationlevel.value }}">{{ educationlevel.name }}</option>
                     {% endfor %}
                 </optgroup>
                 {% endfor %}
-                {% for educationlevel in educationlevels %}
-                <optgroup label="{{ educationlevel.level }}">
-                    {% for subject in subjects if subject.educationlevel == educationlevel %}
-                        <option value="{{ subject.id }}">{{ subject.name }}</option>
-                    {% endfor %}
-                </optgroup>
-                {% endfor %}
-
             </select>
             <label>Subjects</label>
           </div>
