@@ -1,11 +1,13 @@
 import os
-from flask import render_template, flash, url_for, request, redirect
+from flask import render_template, flash, url_for, request, redirect, send_file
 from resourcehub import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
+from io import BytesIO
+
 
 
 @app.route("/")
@@ -43,8 +45,9 @@ def add_resource():
         if "file" in request.files:
             file = request.files["file"]
             filename = secure_filename(file.filename)
-            file_path = file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             data = file.read()
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+                
         else:
             flash("Invalid file", category="error")
             return redirect(url_for("add_resource"))
@@ -53,7 +56,8 @@ def add_resource():
             resource_title=resource_title,
             resource_description=resource_description,
             user_id=current_user.id,
-            file=data,
+            file=filename,
+            data=data,
             subject_id=subject_id,
             education_level_id=education_level_id
         )
@@ -63,6 +67,26 @@ def add_resource():
         flash("Resource added successfully", category="success")
         return redirect(url_for("profile"))
     return render_template("add_resource.html", user=current_user, username=current_user.username, subjects=subjects, education_levels=education_levels)
+
+@app.route("/download/<resource_id>")
+def download(resource_id):
+    resource = Resource.query.get_or_404(resource_id)
+
+    if resource:
+        # Retrieve only the file name
+        file_name = os.path.basename(resource.file)
+
+        # Create a BytesIO stream from the file data
+        file_data = BytesIO(resource.data)
+
+        return send_file(file_data, download_name=file_name, as_attachment=True)
+
+    # Handle the case where the resource with the given ID is not found
+    flash("Resource not found", category="error")
+    return redirect(url_for("profile"))
+
+    # upload = Resource.query.filter_by(id=resource_id).first()
+    # return send_file(BytesIO(upload.data), download_name=upload.file, as_attachment=True)
 
 
 @app.route("/login", methods=["GET", "POST"])

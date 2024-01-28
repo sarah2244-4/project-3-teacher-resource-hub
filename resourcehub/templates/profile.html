@@ -9,6 +9,7 @@
     
     <h3>Your Resources:</h3>
     <a class="btn" href="{{ url_for('add_resource') }}">Add</a>
+    <hr>
     <!-- <div class="section"></div> -->
 
     {% for resource in user.resources %}
@@ -16,15 +17,19 @@
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
-                    <img src="#">
+                    <img src="{{ resource.data }}">
                     <span class="card-title">{{ resource.resource_title }}</span>
+                    <div class="card-actions">
+                        <a href="{{ url_for('download', resource_id=resource.id) }}" class="btn waves-effect waves-light">Download</a>
+                    </div>
                     <!-- Edit button -->
                     <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i class="fa-solid fa-plus"></i></a>
                     <!-- Delete button -->
                     <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i class="fa-solid fa-plus"></i></a>
                 </div>
                 <div class="card-content">
-                    <p>{{ brief_description }}</p>
+                    <!-- <p>{{ brief_description }}</p> -->
+                    <p>{{ resource.resource_description }}</p>
                 </div>
             </div>
         </div>

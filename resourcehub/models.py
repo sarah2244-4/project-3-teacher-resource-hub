@@ -23,6 +23,7 @@ class Resource(db.Model):
     resource_title = db.Column(db.String(50), nullable=False)
     resource_description = db.Column(db.Text, nullable=False)
     file = db.Column(db.String(250), nullable=False)
+    data = db.Column(db.LargeBinary)
     date_created = db.Column(db.DateTime(), default=datetime.utcnow, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
     subject_id = db.Column(db.Integer, db.ForeignKey("subject.id"))
