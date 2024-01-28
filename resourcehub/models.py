@@ -29,7 +29,6 @@ class Resource(db.Model):
     subject_id = db.Column(db.Integer, db.ForeignKey("subject.id"))
     education_level_id = db.Column(db.Integer, db.ForeignKey("education_level.id"))
     comments = db.relationship("Comment", backref="resource", cascade="all, delete", lazy=True)
-    preview = db.Column(db.String(250))
 
     def __repr__(self):
         return f"#{self.id}, title: {self.resource_title}"

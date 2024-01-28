@@ -14,22 +14,19 @@
 
     {% for resource in user.resources %}
     <div class="row">
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image">
-                    <!-- <img src="{{ preview_image_path }}" alt="Preview"> -->
-                    <span class="">{{ resource.resource_title }}</span>
-                    <div class="card-actions">
-                        <a href="{{ url_for('download', resource_id=resource.id) }}" class="btn waves-effect waves-light">Download</a>
-                    </div>
-                    <!-- Edit button -->
-                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i class="fa-solid fa-plus"></i></a>
-                    <!-- Delete button -->
-                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="#"><i class="fa-solid fa-plus"></i></a>
-                </div>
-                <div class="card-content">
-                    <!-- <p>{{ brief_description }}</p> -->
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ resource.resource_title }}</span>
                     <p>{{ resource.resource_description }}</p>
+                </div>
+                <div class="card-action">
+                    <!-- Edit button -->
+                    <a href="#"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <!-- Delete button -->
+                    <a href="#"><i class="fa-solid fa-trash"></i> Delete</a>
+                    <!-- Download button -->
+                    <a href="{{ url_for('download', resource_id=resource.id) }}"><i class="fa-solid fa-file-arrow-down"></i> Download</a>
                 </div>
             </div>
         </div>
