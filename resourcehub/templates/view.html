@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ resource.resource_title }}</h1>
+<p>{{ resource.resource_description }}</p>
+<p>{{ resource.date_created }}</p>
+<p>Uploaded by {{ resource.user.username }}</p>
+<p>Subject: {{ resource.subject.subject_name }}</p>
+<p>Level: {{ resource.education_level.level }}</p>
+
+<!-- Download button -->
+<a href="{{ url_for('download', resource_id=resource.id) }}"><i class="fa-solid fa-file-arrow-down"></i><span> Download</span></a>
+
+<br>
+{% if user == current_user %}
+<!-- Edit button -->
+<a href="#"><i class="fa-solid fa-pen-to-square"></i><span> Edit</span></a>
+<!-- Delete button -->
+<a href="#"><i class="fa-solid fa-trash"></i><span> Delete</span></a>
+{% endif %}
+
+
+{% endblock %}
