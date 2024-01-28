@@ -4,7 +4,7 @@
 <h3 class="center-align">Add Resource</h3>
 
 <div class="row card-panel">
-    <form class="col s12" method="POST" action="{{ url_for('add_resource') }}">
+    <form class="col s12" method="POST" action="{{ url_for('add_resource') }}" enctype="multipart/form-data">
         <!-- Category name -->
         <div class="row">
             <div class="input-field col s12">
@@ -16,41 +16,51 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-rectangle-list prefix"></i>
-                <input id="resource_description"  name="resource_description" minlength="3" maxlength="1000" type="text" class="validate" required>
+                <textarea id="resource_description" name="resource_description" class="materialize-textarea" minlength="20" required></textarea>
                 <label for="resource_description">Description</label>
             </div>
         </div>
-        <div class="input-field col s12">
-            <select multiple required>
-                <option value="" disabled selected>Choose your subject</option>
 
+        <div class="input-field col s12">
+            <select id="subject" name="subject" required>
+                <option value="" disabled selected>Choose your subject</option>
                 {% for subject in subjects %}
-                <optgroup label="{{ subject.name }}">
-                    {% for educationlevel in educationlevels %}
-                            <option value="{{ educationlevel.value }}">{{ educationlevel.name }}</option>
-                    {% endfor %}
-                </optgroup>
+                    <option value="{{ subject.subject_name }}" id="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
                 {% endfor %}
             </select>
-            <label>Subjects</label>
-          </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fa-regular fa-file prefix"></i>
-                <input id="url"  name="url" minlength="3" maxlength="1000" type="text" class="validate" required>
-                <label for="resource_description">Upload documents</label>
+            <label for="subject">Subject</label>
+        </div>
+
+        <div class="input-field col s12">
+            <select id="education_level" name="education_level" required>
+                <option value="" disabled selected>Choose your level</option>
+                {% for education_level in education_levels %}
+                    <option value="{{ education_level.level }}" id="{{ education_level.level }}">{{ education_level.level }}</option>
+                {% endfor %}
+            </select>
+            <label for="education_level">Education Level</label>
+        </div>
+
+        <!-- File upload -->
+        <div class="file-field input-field">
+            <div class="btn">
+                <span><i class="fa-regular fa-file"></i></span>
+                <input type="file" id="file" name="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload one or more documents">
             </div>
         </div>
+
         <div class="row">
             <div class="col s12 center-align">
                 <button type="submit" class="btn-large">
-                    Create
+                    Upload
                 </button>
             </div>
         </div>
     </form>
 </div>
         
-
 
 {% endblock %}

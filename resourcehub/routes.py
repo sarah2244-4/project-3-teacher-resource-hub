@@ -1,8 +1,11 @@
+import os
 from flask import render_template, flash, url_for, request, redirect
 from resourcehub import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from resourcehub.models import User, Resource, Comment, Subject, SubjectEnum, EducationLevel, EducationLevelEnum
+from werkzeug.utils import secure_filename
+from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
+from datetime import datetime
 
 
 @app.route("/")
@@ -19,26 +22,47 @@ def profile():
 
 @app.route("/add_resource", methods=["GET", "POST"])
 def add_resource():
-    subjects = list(SubjectEnum)
-    educationlevels = list(EducationLevelEnum)
+    # Define subjects and education_levels for form
+    subjects = Subject.query.all()
+    education_levels = EducationLevel.query.all()
 
     if request.method == "POST":
         resource_title = request.form.get("resource_title")
         resource_description = request.form.get("resource_description")
-        url = request.form.get("url")
-        selected_subjects = request.form.getlist("subjects")
+        subject_name = request.form.get("subject")
+        education_level_name = request.form.get("education_level")
+
+        # Convert subject and education level names to IDs
+        subject_id = next((subject.id for subject in subjects if subject.subject_name == subject_name), None)
+        education_level_id = next((level.id for level in education_levels if level.level == education_level_name), None)
+        
+        if subject_id is None or education_level_id is None:
+            flash("Invalid subject or education level", category="error")
+            return redirect(url_for("add_resource"))
+
+        if "file" in request.files:
+            file = request.files["file"]
+            filename = secure_filename(file.filename)
+            file_path = file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            data = file.read()
+        else:
+            flash("Invalid file", category="error")
+            return redirect(url_for("add_resource"))
+        
         new_resource = Resource(
-            resource_name=resource_title,
+            resource_title=resource_title,
             resource_description=resource_description,
-            url=url,
-            user_id=current_user.id
+            user_id=current_user.id,
+            file=data,
+            subject_id=subject_id,
+            education_level_id=education_level_id
         )
         db.session.add(new_resource)
 
         db.session.commit()
         flash("Resource added successfully", category="success")
         return redirect(url_for("profile"))
-    return render_template("add_resource.html", user=current_user, username=current_user.username, subjects=subjects, educationlevels=educationlevels)
+    return render_template("add_resource.html", user=current_user, username=current_user.username, subjects=subjects, education_levels=education_levels)
 
 
 @app.route("/login", methods=["GET", "POST"])
