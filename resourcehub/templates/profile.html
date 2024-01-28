@@ -22,9 +22,9 @@
                 </div>
                 <div class="card-action">
                     <!-- Edit button -->
-                    <a href="#"><i class="fa-solid fa-pen-to-square"></i><span class="hide-on-med-and-up"> Edit</span></a>
+                    <a href="#"><i class="fa-solid fa-pen"></i><span class="hide-on-med-and-up"> Edit</span></a>
                     <!-- Delete button -->
-                    <a href="#"><i class="fa-solid fa-trash"></i><span class="hide-on-med-and-up"> Delete</span></a>
+                    <a href="{{ url_for('delete_resource', resource_id=resource.id) }}"><i class="fa-solid fa-trash"></i><span class="hide-on-med-and-up"> Delete</span></a>
                     <br>
                     <!-- View button -->
                     <a href="{{ url_for('view', resource_id=resource.id) }}"><i class="fa-solid fa-eye"></i><span class="hide-on-med-and-up"> View</span></a>

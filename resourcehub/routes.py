@@ -125,6 +125,10 @@ def add_resource():
 @app.route("/download/<resource_id>")
 @login_required
 def download(resource_id):
+    if not current_user.is_authenticated:
+        flash("You need to be logged in to download resources.", category="error")
+        return redirect(url_for("login"))
+    
     resource = Resource.query.get_or_404(resource_id)
 
     if resource:
@@ -151,3 +155,55 @@ def view(resource_id):
     else:
         flash("Resource not found", category="error")
         return redirect(url_for("profile"))
+    
+
+@app.route("/resources/<subject_name>")
+def subject_page(subject_name):
+     
+    education_levels = EducationLevel.query.all()
+    resources = Resource.query.all()
+
+    # if resource.subject.subject_name == subject_name:
+
+
+    return render_template("subject_page.html", user=current_user, resources=resources)
+
+
+@app.route("/filter_levels/<education_level_name>")
+def filter_levels(education_level_name):
+    """
+    Creates cookie 
+    """
+    session["url"] = request.url
+    
+
+    return render_template(
+        "filter_resources.html",
+        user=current_user)
+
+
+@app.route("/edit_resource/<int:resource_id>")
+@login_required
+def edit_resource(resource_id):
+    """
+    
+    """
+
+    return render_template(
+        "filter_resources.html",
+        user=current_user)
+
+
+@app.route("/delete_resource/<int:resource_id>")
+@login_required
+def delete_resource(resource_id):
+    """
+    
+    """
+    resource = Resource.query.get_or_404(resource_id)
+    db.session.delete(resource)
+    db.session.commit()
+    flash("Resource successfully deleted", category="success")
+
+
+    return redirect(url_for("profile"))
