@@ -17,8 +17,8 @@
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{ resource.data }}">
-                    <span class="card-title">{{ resource.resource_title }}</span>
+                    <!-- <img src="{{ preview_image_path }}" alt="Preview"> -->
+                    <span class="">{{ resource.resource_title }}</span>
                     <div class="card-actions">
                         <a href="{{ url_for('download', resource_id=resource.id) }}" class="btn waves-effect waves-light">Download</a>
                     </div>
