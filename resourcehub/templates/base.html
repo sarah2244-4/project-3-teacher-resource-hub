@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}" type="text/css">
     <title>Teacher Resource Hub</title>
 </head>
 <body>
@@ -24,11 +24,11 @@
         </ul>
 
         <!-- Navbar -->
-        <div class="navbar-fixed">
+        <div class="navbar-fixed nav-extended">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Logo</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <a href="{{ url_for('home') }}" class="brand-logo"><img src="static/assets/images/colour-logo-removebg.png" alt="Education Resource Hub logo" class="logo"></a>
+                    <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if user.is_authenticated %}
                         <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -55,7 +55,7 @@
         </ul>
     </header>
 
-    <main class="container">
+    <main>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}

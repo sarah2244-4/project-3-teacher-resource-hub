@@ -1,0 +1,120 @@
+:root {
+  --darkred: #590004;
+  --red: #C97064;
+  --blue: #81B29A;
+  --yellow: #F2CC8F;
+  --dark-blue: #101935;
+
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+* {
+
+}
+
+.header {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  height: 5px;
+  background: linear-gradient(90deg, rgba(242,204,143,1) 25%, rgba(129,178,154,1) 89%);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Logo */
+.logo {
+  height: 10vh;
+}
+
+/* Navbar */
+.nav-wrapper {
+  background-color: var(--yellow);
+}
+
+li {
+  color: var(--dark-blue);
+}
+
+/* Hero */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('../images/lesson-planning.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Text color */
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2); 
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Promotion table */
+
+.promo-table {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.promo-icon {
+  font-size: 60px;
+  color: var(--blue)
+}
+
+/* Subject cards */
+
+.subject-card-container {
+  padding-top: 20px;
+}
+
+/* Resource cards */
+
+.card-content {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-right:4px;
+    
+		/* .material-icons {
+			font-size: 1.5em;
+			position: relative;
+			top: 5px;
+			margin-right: 0.5em;
+		}	 */
+}	
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
