@@ -182,16 +182,55 @@ def filter_levels(education_level_name):
         user=current_user)
 
 
-@app.route("/edit_resource/<int:resource_id>")
+@app.route("/edit_resource/<int:resource_id>", methods=["GET", "POST"])
 @login_required
 def edit_resource(resource_id):
     """
     
     """
+    resource = Resource.query.get_or_404(resource_id)
+
+    # Define subjects and education_levels for form
+    subjects = Subject.query.all()
+    education_levels = EducationLevel.query.all()
+
+    if request.method == "POST":
+        if current_user == resource.user:
+            resource_title = request.form.get("resource_title")
+            resource_description = request.form.get("resource_description")
+            subject_name = request.form.get("subject")
+            education_level_name = request.form.get("education_level")
+            # Convert subject and education level names to IDs
+            subject_id = next((subject.id for subject in subjects if subject.subject_name == subject_name), None)
+            education_level_id = next((level.id for level in education_levels if level.level == education_level_name), None)
+            
+            if subject_id is None or education_level_id is None:
+                flash("Invalid subject or education level", category="error")
+                return redirect(url_for("add_resource"))
+
+            if "file" in request.files:
+                file = request.files["file"]
+                filename = secure_filename(file.filename)
+                data = file.read()
+                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            else:
+                filename = resource.file
+                data = resource.data
+
+            resource.resource_title = resource_title
+            resource.resource_description = resource_description
+            resource.subject_id = subject_id
+            resource.education_level_id = education_level_id
+            resource.file = filename
+            resource.data = data 
+
+            db.session.commit()
+            flash("Resource updated successfully", category="success")
+            return redirect(url_for("profile"))
 
     return render_template(
-        "filter_resources.html",
-        user=current_user)
+        "edit_resource.html",
+        user=current_user, resource=resource, subjects=subjects, education_levels=education_levels)
 
 
 @app.route("/delete_resource/<int:resource_id>")

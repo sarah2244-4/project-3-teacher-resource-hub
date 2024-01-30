@@ -12,3 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	let select = document.querySelectorAll("select");
 	M.FormSelect.init(select);
 });
+
+document.getElementById("my-link").addEventListener("click", function (e) {
+	console.log("Click happened for: " + e.target.id);
+});
