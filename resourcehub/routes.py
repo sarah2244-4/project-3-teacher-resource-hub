@@ -69,14 +69,41 @@ def signup():
 @app.route('/profile')
 @login_required
 def profile():
-    # 
+    
     resources = list(Resource.query.order_by(Resource.date_created).all())
     return render_template("profile.html", user=current_user, username=current_user.username, resources=resources)
 
 
-@app.route('/edit_profile')
+@app.route('/edit_profile', methods=["GET", "POST"])
 @login_required
 def edit_profile():
+    '''
+    Users can edit their username, email or password.
+    '''
+    if request.method =="POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Validity Check
+        user = User.query.filter_by(username=username).first()
+        user_email = User.query.filter_by(email=email).first()
+        if user: 
+            flash("Username already exists.", category="error")
+        elif user_email: 
+            flash("Email already exists.", category="error")
+        else:
+            if username:
+                current_user.username = username
+            if email:
+                current_user.email = email
+            if password:
+                current_user.password = generate_password_hash(password)
+            db.session.commit()
+            flash("Profile successfully updated", category="success")
+
+            return redirect(url_for("profile"))
+
     return render_template("edit_profile.html", user=current_user)
 
 
