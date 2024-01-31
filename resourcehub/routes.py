@@ -74,6 +74,12 @@ def profile():
     return render_template("profile.html", user=current_user, username=current_user.username, resources=resources)
 
 
+@app.route('/edit_profile')
+@login_required
+def edit_profile():
+    return render_template("edit_profile.html", user=current_user)
+
+
 @app.route("/add_resource", methods=["GET", "POST"])
 @login_required
 def add_resource():

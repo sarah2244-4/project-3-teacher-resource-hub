@@ -4,6 +4,7 @@
   --blue: #81B29A;
   --yellow: #F2CC8F;
   --dark-blue: #101935;
+  --off-white: rgb(250, 240, 227);
 
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
@@ -16,7 +17,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: rgb(250, 240, 227);
+  background-color: var(--off-white);
 }
 
 main {
@@ -39,6 +40,10 @@ main {
 
 /* Buttons */
 
+button {
+  font-family: inherit;
+}
+
 .btn {
   background-color: var(--dark-blue);
 }
@@ -55,6 +60,10 @@ main {
 
 .btn:active, .bg-link:active{
   background-color: (var(--red));
+}
+
+.cancel-btn {
+  background-color: var(--darkred);
 }
 
 /* Logo */
@@ -194,3 +203,9 @@ main {
   margin-right: 0.5em;
   
 }	 
+
+/* Forms */
+
+form label {
+  font-size: 1rem;
+}
