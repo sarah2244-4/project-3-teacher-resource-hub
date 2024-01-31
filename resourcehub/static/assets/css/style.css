@@ -12,6 +12,17 @@
 
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: rgb(250, 240, 227);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 .header {
   text-align: center;
   font-size: 3rem;
@@ -19,32 +30,63 @@
 
 .divider {
   width: 100%;
+  margin: 0 auto;
   border: none;
   height: 5px;
   background: linear-gradient(90deg, rgba(242,204,143,1) 25%, rgba(129,178,154,1) 89%);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+}
+
+/* Buttons */
+
+.btn {
+  background-color: var(--dark-blue);
+}
+
+.btn, .bg-link {
+  -webkit-transition: ease-in-out 0.3s;
+  -moz-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
+}
+
+.btn:hover, .bg-link:hover{ 
+  background-color: var(--red);
+}
+
+.btn:active, .bg-link:active{
+  background-color: (var(--red));
 }
 
 /* Logo */
+
 .logo {
-  height: 10vh;
+  height: 55px;
 }
 
 /* Navbar */
+
 .nav-wrapper {
   background-color: var(--yellow);
 }
 
-li {
+.nav-link {
   color: var(--dark-blue);
 }
+
+/* Footer */
+
+.page-footer {
+  background-color: var(--dark-blue);
+  padding-bottom: 18px;
+}
+
+/* Index Page */
 
 /* Hero */
 
 .hero {
     position: relative;
-    height: 100vh;
+    height: 90vh;
     background-image: url('../images/lesson-planning.jpg');
     background-size: cover;
     background-position: center;
@@ -80,7 +122,7 @@ li {
 
 .promo-table {
   text-align: center;
-  margin-top: 10vh;
+  margin: 80px auto;
 }
 
 .promo-icon {
@@ -88,33 +130,67 @@ li {
   color: var(--blue)
 }
 
-/* Subject cards */
+/* Subject Cards */
 
 .subject-card-container {
   padding-top: 20px;
 }
 
-/* Resource cards */
+.card-panel {
+  background-color: var(--blue);
+  text-align: center;
+  font-size: 2rem; 
+  margin: 50px 0;
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .card-panel {
+    margin: 2vh 0;
+    font-size: 1.8rem;
+  }
+  .promo-header {
+    font-size: 2.5rem;
+  }
+}
+
+/* Profile */
+
+.welcome {
+  color: var(--dark-blue)
+}
+
+/* Resource Cards */
 
 .card-content {
     font-weight: bold;
     font-size: 1.1em;
     margin-right:4px;
     
-		/* .material-icons {
-			font-size: 1.5em;
-			position: relative;
-			top: 5px;
-			margin-right: 0.5em;
-		}	 */
+		
 }	
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+.profile-card {
+  background-color: var(--darkred);
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+.card-title {
+  text-transform: capitalize;
+}
+
+.card-description {
+  
+}
+
+.card-action i, .card-action span {
+  color: var(--yellow)
+}
+
+.profile
+
+.profile-card i {
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  margin-right: 0.5em;
+  
+}	 

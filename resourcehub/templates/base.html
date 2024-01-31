@@ -12,7 +12,7 @@
     <header>
         <!-- Dropdown Structure in Navbar -->
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#">Biology</a></li>
+            <li ><a href="#">Biology</a></li>
             <li><a href="#">Chemistry</a></li>
             <li><a href="#">Physics</a></li>
         </ul>
@@ -28,18 +28,20 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{ url_for('home') }}" class="brand-logo"><img src="static/assets/images/colour-logo-removebg.png" alt="Education Resource Hub logo" class="logo"></a>
-                    <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                    <a href="" data-target="mobile-demo" class="sidenav-trigger nav-link"><i class="fas fa-bars"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if user.is_authenticated %}
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <li><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
+                        <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
                         <li><a href="{{ url_for('logout') }}" class="waves-effect waves-light btn">Logout</a></li>
                         {% else %}
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('signup') }}" class="waves-effect waves-light btn">Sign Up</a></li>
-                        <li><a href="{{ url_for('login') }}" class="waves-effect waves-light btn">Login</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
+                        <li><a href="{{ url_for('signup') }}" class="waves-effect btn">Sign Up</a></li>
+                        <li><a href="{{ url_for('login') }}" class="waves-effect btn">Login</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -48,42 +50,53 @@
 
         <!-- Mobile Sidenav -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="#">Home</a></li>
-            <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href="#" data-target="dropdown2">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
-            <li><a href="#" class="waves-effect waves-light btn">Sign Up/Login</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown2">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
+                <li><a href="{{ url_for('logout') }}" class="waves-effect btn">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown2">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
+                <li><a href="{{ url_for('signup') }}" class="waves-effect btn">Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}" class="waves-effect btn">Login</a></li>
+            {% endif %}
         </ul>
     </header>
 
     <main>
+        <div class="container">
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-            {% if category == "error" %}
-            <!-- Alert for error message -->
-            <div class="alert alert-danger card amber lighten-4 brown-text" role="alert">
-                <div class="card-content">
-                    <p><i class="fa-solid fa-circle-exclamation"></i> 
-                     {{ message }}
-                     <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                {% if category == "error" %}
+                <!-- Alert for error message -->
+                <div class="alert alert-danger card amber lighten-4 brown-text" role="alert">
+                    <div class="card-content">
+                        <p><i class="fa-solid fa-circle-exclamation"></i> 
+                        {{ message }}
+                        <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+                    </div>
                 </div>
-            </div>
 
-            {% else %}
-            <!-- Alert for success message -->
-            <div class="alert alert-success card green lighten-4 green-text text-darken-4" role="alert">
-                <div class="card-content">
-                    <p><i class="fa-solid fa-circle-check"></i> 
-                     {{ message }}
-                     <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+                {% else %}
+                <!-- Alert for success message -->
+                <div class="alert alert-success card green lighten-4 green-text text-darken-4" role="alert">
+                    <div class="card-content">
+                        <p><i class="fa-solid fa-circle-check"></i> 
+                        {{ message }}
+                        <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
+                    </div>
+                    
                 </div>
-                
-            </div>
+                {% endif %}
+                {% endfor %}
             {% endif %}
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
+            {% endwith %}
+        </div>
 
         {% block content %}
         {% endblock %}
@@ -92,30 +105,11 @@
 
     <!-- Footer -->
     <footer class="page-footer">
-        <!-- <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
-        <div class="footer-copyright">
-          <div class="container">
-          © 2024 Sarah Marrey
-          <a class="grey-text text-lighten-4 right" href="https://github.com/sarah2244-4" target="_blank"><i class="fa-brands fa-github"></i></a>
-          </div>
+            <div class="container">
+            © 2024 Sarah Marrey
+            <a class="grey-text text-lighten-4 right link" href="https://github.com/sarah2244-4" target="_blank"><i class="fa-brands fa-github"></i></a>
         </div>
-      </footer>
+    </footer>
 
     <script src="https://kit.fontawesome.com/ac0ffb0ab5.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
