@@ -8,39 +8,43 @@
     </h1>
     
     <h3>Your Resources</h3>
-    <a class="btn" href="{{ url_for('add_resource') }}">Add</a>
-</div>
 
-<div class="divider"></div>
-
-<div class="container">    
+    <div class="divider"></div>
     
-    <div class="row">
+    <a class="btn add-btn" href="{{ url_for('add_resource') }}">Add</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="fifteen">Title</th>
+                <th class="forty">Description</th>
+                <th class="ten">Subject</th>
+                <th class="ten">Level</th>
+                <th class="fifteen">Date Created</th>
+                <th class="te "> </th>
+            </tr>
+        </thead>
         {% for resource in user.resources %}
-        <div class="col s12 m6 l4">
-            <div class="card profile-card darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">{{ resource.resource_title }}</span>
-                    <p class="card-description">{{ resource.resource_description }}</p>
-                </div>
-                <div class="card-action">
-                    <!-- Edit button -->
-                    <a href="{{ url_for('edit_resource', resource_id=resource.id) }}"><i class="fa-solid fa-pen"></i><span> Edit</span></a>
+        <tbody>
+            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                <td>{{ resource.resource_title }}</td>
+                <td id="table-description">{{ resource.resource_description }}</td>
+                <td>{{ resource.subject.subject_name }}</td>
+                <td>{{ resource.education_level.level }}</td>
+                <td>{{ resource.date_created.strftime('%d %B, %Y') }}</td>
+                <td>
+                    <a href="{{ url_for('edit_resource', resource_id=resource.id) }}"><i class="fa-solid fa-pen profile-table-icon"></i></a>
                     <!-- Delete button -->
-                    <a href="{{ url_for('delete_resource', resource_id=resource.id) }}"><i class="fa-solid fa-trash"></i><span > Delete</span></a>
-                    <br>
-                    <!-- View button -->
-                    <a href="{{ url_for('view', resource_id=resource.id) }}"><i class="fa-solid fa-eye"></i><span> View</span></a>
+                    <a href="{{ url_for('delete_resource', resource_id=resource.id) }}"><i class="fa-solid fa-trash profile-table-icon"></i></a>
                     <!-- Download button -->
-                    <a href="{{ url_for('download', resource_id=resource.id) }}"><i class="fa-solid fa-file-arrow-down"></i><span> Download</span></a>
-                </div>
-            </div>
-        </div>
+                    <a href="{{ url_for('download', resource_id=resource.id) }}"><i class="fa-solid fa-file-arrow-down profile-table-icon"></i></a>
+                </td>
+            </tr>
+            
+        </tbody>
         {% endfor %}
-    </div>
+    </table>
 
-    
-    
 </div>
 
 {% endblock %}

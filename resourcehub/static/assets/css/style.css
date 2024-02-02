@@ -2,9 +2,10 @@
   --darkred: #590004;
   --red: #C97064;
   --blue: #81B29A;
-  --yellow: #F2CC8F;
+  --yellow: rgb(242, 204, 143);
   --dark-blue: #101935;
   --off-white: rgb(250, 240, 227);
+  --yellow-alpha: rgba(242, 204, 143, 0.4);
 
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
@@ -48,22 +49,23 @@ button {
   background-color: var(--dark-blue);
 }
 
-.btn, .bg-link {
-  -webkit-transition: ease-in-out 0.3s;
-  -moz-transition: ease-in-out 0.3s;
-  transition: ease-in-out 0.3s;
+.btn, .bg-link, .profile-table-icon, .clickable-row {
+  -webkit-transition: ease-in-out 0.5s;
+  -moz-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
 }
 
-.btn:hover, .bg-link:hover{ 
+.btn:hover, .btn:focus, .btn-active, .bg-link:active, .btn::after, .bg-link::after, .bg-link:hover { 
   background-color: var(--red);
-}
-
-.btn:active, .bg-link:active{
-  background-color: (var(--red));
+  color: black;
 }
 
 .cancel-btn {
   background-color: var(--darkred);
+}
+
+.add-btn {
+  margin: 10px;
 }
 
 /* Logo */
@@ -87,6 +89,14 @@ button {
 .page-footer {
   background-color: var(--dark-blue);
   padding-bottom: 18px;
+}
+
+.page-footer a {
+  color: white;
+}
+
+.page-footer a:hover {
+  color: var(--yellow);
 }
 
 /* Index Page */
@@ -150,6 +160,7 @@ button {
   text-align: center;
   font-size: 2rem; 
   margin: 50px 0;
+  color: var(--dark-blue)
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
@@ -204,8 +215,50 @@ button {
   
 }	 
 
+/* Table */
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  margin: 20px 0 60px;
+}
+
+thead {
+  background-color: var(--red);
+}
+
+th {
+  border-radius: 0;
+}
+
+.ten {
+  width: 10%;
+}
+
+.fifteen {
+  width: 15%;
+}
+
+.forty {
+  width: 40%;
+}
+
+.clickable-row:hover {
+  cursor: pointer;
+  background-color: var(--yellow-alpha); 
+}
+
+.profile-table-icon {
+  color: var(--dark-blue);
+}
+
+.profile-table-icon:hover, .profile-table-icon:active, .profile-table-icon:focus {
+  color: var(--red);
+}
+
 /* Forms */
 
 form label {
   font-size: 1rem;
 }
+
