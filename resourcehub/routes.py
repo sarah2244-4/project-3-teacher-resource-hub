@@ -233,6 +233,8 @@ def edit_resource(resource_id):
             resource_description = request.form.get("resource_description")
             subject_name = request.form.get("subject")
             education_level_name = request.form.get("education_level")
+            filename = None
+            data = None
             # Convert subject and education level names to IDs
             subject_id = next((subject.id for subject in subjects if subject.subject_name == subject_name), None)
             education_level_id = next((level.id for level in education_levels if level.level == education_level_name), None)
@@ -243,9 +245,14 @@ def edit_resource(resource_id):
 
             if "file" in request.files:
                 file = request.files["file"]
-                filename = secure_filename(file.filename)
-                data = file.read()
-                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+                if file.filename: 
+                    filename = secure_filename(file.filename)
+                    data = file.read()
+                    existing_file_path = os.path.join(app.config["UPLOAD_FOLDER"], resource.file)
+                    if os.path.exists(existing_file_path):
+                        os.remove(existing_file_path)
+
+                    file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             else:
                 filename = resource.file
                 data = resource.data
@@ -254,12 +261,14 @@ def edit_resource(resource_id):
             resource.resource_description = resource_description
             resource.subject_id = subject_id
             resource.education_level_id = education_level_id
-            resource.file = filename
-            resource.data = data 
+
+            if filename is not None and data is not None:
+                resource.file = filename
+                resource.data = data  
 
             db.session.commit()
             flash("Resource updated successfully", category="success")
-            return redirect(url_for("profile"))
+            return redirect(url_for("view", resource_id=resource.id))
 
     return render_template(
         "edit_resource.html",

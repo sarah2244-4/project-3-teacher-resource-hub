@@ -170,7 +170,6 @@ button {
 }
 
 .card-panel {
-  background-color: var(--blue);
   text-align: center;
   font-size: 2rem; 
   margin: 50px 0;
@@ -317,6 +316,4 @@ form label {
   font-size: 1rem;
 }
 
-form {
-  background-color: var(--off-white);
-}
+
