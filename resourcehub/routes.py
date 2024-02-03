@@ -273,9 +273,10 @@ def delete_resource(resource_id):
     
     """
     resource = Resource.query.get_or_404(resource_id)
-    db.session.delete(resource)
-    db.session.commit()
-    flash("Resource successfully deleted", category="success")
+    if resource: 
+        if resource.user_id == current_user.id:
+            db.session.delete(resource)
+            db.session.commit()
+            flash("Resource successfully deleted", category="success")
 
-
-    return redirect(url_for("profile"))
+            return redirect(url_for("profile"))

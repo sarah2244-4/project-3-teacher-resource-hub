@@ -1,22 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>{{ resource.resource_title }}</h1>
-<p>{{ resource.resource_description }}</p>
-<p>Uploaded by {{ resource.user.username }} on {{ resource.date_created.strftime('%d %B, %Y') }}</p>
-<p>Subject: {{ resource.subject.subject_name }}</p>
-<p>Level: {{ resource.education_level.level }}</p>
+<div class="container">
 
-<!-- Download button -->
-<a href="{{ url_for('download', resource_id=resource.id) }}"><i class="fa-solid fa-file-arrow-down"></i><span> Download</span></a>
+    <div class="small-container">
+        <p class="inline"><span class="bold">Subject:</span> {{ resource.subject.subject_name }}</p>
+        <p class="inline right"><span class="bold">Level:</span> {{ resource.education_level.level }}</p>
+        <hr>
+        <!-- Download button -->
+        <a href="{{ url_for('download', resource_id=resource.id) }}" class="bold download-icon">
+            <i class="fa-solid fa-file-arrow-down"></i> <span >Download</span>
+        </a>
+        <p class="right">Uploaded by {{ resource.user.username }}</p>
+        <br>
+        <p class="date right">{{ resource.date_created.strftime('%d %B, %Y') }}</p>
+    </div>
+        
+    <h1 class="title">{{ resource.resource_title }}</h1>
+    
+    <p class="description"><span class="bold">About:</span> {{ resource.resource_description }}</p>
+    
+    <div class="user-buttons">
+        {% if user == current_user %}
 
-<br>
-{% if user == current_user %}
-<!-- Edit button -->
-<a href="#"><i class="fa-solid fa-pen"></i><span> Edit</span></a>
-<!-- Delete button -->
-<a href="{{ url_for('delete_resource', resource_id=resource.id) }}"><i class="fa-solid fa-trash"></i><span> Delete</span></a>
+        <!-- Edit button -->
+        <a href="{{ url_for('edit_resource', resource_id=resource.id) }}" class="icon-button bold">
+            <i class="fa-solid fa-pen"></i> Edit
+        </a>
+                            
+        <!-- Delete button - modal trigger -->
+        <a class="modal-trigger icon-button bold" href="#modal1">
+            <i class="fa-solid fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4 class="bold">This will delete {{ resource.resource_title }} permanently. Are you sure?</h4>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close btn-flat">No</a>
+        <a href="{{ url_for('delete_resource', resource_id=resource.id) }}" class="modal-close btn-flat">
+            Yes
+        </a>
+    </div>
+</div>
+
 {% endif %}
+
 
 
 {% endblock %}

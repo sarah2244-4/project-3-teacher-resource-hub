@@ -11,8 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	// form select initialization
 	let select = document.querySelectorAll("select");
 	M.FormSelect.init(select);
+	// modal initialization
+	let modals = document.querySelectorAll(".modal");
+	M.Modal.init(modals);
+
 });
 
-document.getElementById("my-link").addEventListener("click", function (e) {
-	console.log("Click happened for: " + e.target.id);
-});
+// document.getElementById("my-link").addEventListener("click", function (e) {
+// 	console.log("Click happened for: " + e.target.id);
+// });

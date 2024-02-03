@@ -7,7 +7,8 @@
   --off-white: rgb(250, 240, 227);
   --yellow-alpha: rgba(242, 204, 143, 0.4);
 
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 400;
 }
 
 * {
@@ -19,6 +20,7 @@ body {
   min-height: 100vh;
   flex-direction: column;
   background-color: var(--off-white);
+  overflow: auto !important;
 }
 
 main {
@@ -39,6 +41,18 @@ main {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
+.bold {
+  font-weight: 900;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.break {
+  padding: 40px;
+}
+
 /* Buttons */
 
 button {
@@ -49,10 +63,10 @@ button {
   background-color: var(--dark-blue);
 }
 
-.btn, .bg-link, .profile-table-icon, .clickable-row {
-  -webkit-transition: ease-in-out 0.5s;
-  -moz-transition: ease-in-out 0.5s;
-  transition: ease-in-out 0.5s;
+.btn, .bg-link, .profile-table-icon, .clickable-row, .download-icon {
+  -webkit-transition: ease-in-out 0.35s;
+  -moz-transition: ease-in-out 0.35s;
+  transition: ease-in-out 0.35s;
 }
 
 .btn:hover, .btn:focus, .btn-active, .bg-link:active, .btn::after, .bg-link::after, .bg-link:hover { 
@@ -80,7 +94,7 @@ button {
   background-color: var(--yellow);
 }
 
-.nav-link {
+.nav-link, .profile-table-icon, .icon-button {
   color: var(--dark-blue);
 }
 
@@ -243,17 +257,58 @@ th {
   width: 40%;
 }
 
+.five {
+  width: 5%;
+}
+
+.twenty {
+  width: 20%;
+}
+
 .clickable-row:hover {
   cursor: pointer;
   background-color: var(--yellow-alpha); 
 }
 
-.profile-table-icon {
-  color: var(--dark-blue);
+.profile-table-icon:hover, .profile-table-icon:active, .profile-table-icon:focus, .icon-button:hover, .icon-button:active, .icon-button:focus {
+  color: var(--red);
 }
 
-.profile-table-icon:hover, .profile-table-icon:active, .profile-table-icon:focus {
+.date {
+  display: block;
+  text-align: right;
+  margin-right: -105px;
+}
+
+.small-container {
+  width: 80%;
+  margin: 50px auto;
+}
+
+.title {
+  color: var(--dark-blue);
+  text-transform: capitalize;
+}
+
+.download-icon {
+  font-size: 25px;
   color: var(--red);
+}
+
+.download-icon:hover, .download-icon:focus, .download-icon:active {
+  color: var(--darkred);
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.user-buttons {
+  padding: 30px 0;
+}
+
+.user-buttons .icon-button {
+  margin-right: 20px;
 }
 
 /* Forms */
@@ -262,3 +317,6 @@ form label {
   font-size: 1rem;
 }
 
+form {
+  background-color: var(--off-white);
+}
