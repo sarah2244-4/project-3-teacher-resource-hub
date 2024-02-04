@@ -107,6 +107,38 @@ def edit_profile():
     return render_template("edit_profile.html", user=current_user)
 
 
+@app.route("/delete_profile/<int:user_id>")
+@login_required
+def delete_profile(user_id):
+    """
+    
+    """
+    if current_user.id == user_id:
+            # Retrieve the user from the database
+            user = User.query.get(user_id)
+
+            if user:
+                db.session.delete(user)
+                db.session.commit()
+                flash("Profile successfully deleted", category="success")
+                return redirect(url_for("home"))
+            else:
+                flash("User not found", category="error")
+
+            # Handle the case where the current user ID doesn't match the provided user_id
+            flash("Unauthorized action", category="error")
+            return redirect(url_for("home"))
+
+    # user.id == current_user.id;
+    # if user: 
+    #     if user == current_user.id:
+    #         db.session.delete(user)
+    #         db.session.commit()
+    #         flash("Profile successfully deleted", category="success")
+
+    #         return redirect(url_for("home"))
+
+
 @app.route("/add_resource", methods=["GET", "POST"])
 @login_required
 def add_resource():
