@@ -371,3 +371,8 @@ def delete_resource(resource_id):
             flash("Resource successfully deleted", category="success")
 
             return redirect(url_for("profile"))
+        
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', user=current_user), 404
