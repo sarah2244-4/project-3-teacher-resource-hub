@@ -19,15 +19,15 @@
     <header>
         <!-- Dropdown Structure in Navbar -->
         <ul id="dropdown1" class="dropdown-content">
-            <li ><a href="#">Biology</a></li>
-            <li><a href="#">Chemistry</a></li>
-            <li><a href="#">Physics</a></li>
+            <li ><a href="{{ url_for('subject_page', subject_name='biology') }}">Biology</a></li>
+            <li><a href="{{ url_for('subject_page', subject_name='chemistry') }}">Chemistry</a></li>
+            <li><a href="{{ url_for('subject_page', subject_name='physics') }}">Physics</a></li>
         </ul>
         <!-- Dropdown Structure in Mobile SideNav -->
         <ul id="dropdown2" class="dropdown-content">
-            <li><a href="#">Biology</a></li>
-            <li><a href="#">Chemistry</a></li>
-            <li><a href="#">Physics</a></li>
+            <li><a href="{{ url_for('subject_page', subject_name='biology') }}">Biology</a></li>
+            <li><a href="{{ url_for('subject_page', subject_name='chemistry') }}">Chemistry</a></li>
+            <li><a href="{{ url_for('subject_page', subject_name='physics') }}">Physics</a></li>
         </ul>
 
         <!-- Navbar -->

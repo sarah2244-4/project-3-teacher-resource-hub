@@ -7,6 +7,7 @@ from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 from io import BytesIO
+from sqlalchemy import func
 
 
 
@@ -216,16 +217,19 @@ def view(resource_id):
         return redirect(url_for("profile"))
     
 
-@app.route("/resources/<subject_name>")
+@app.route("/subject_page/<subject_name>")
 def subject_page(subject_name):
      
     education_levels = EducationLevel.query.all()
     resources = Resource.query.all()
 
-    # if resource.subject.subject_name == subject_name:
+    subject_resources = []
 
+    for resource in resources: 
+        if resource.subject.subject_name.lower() == subject_name.lower():
+            subject_resources.append(resource)
 
-    return render_template("subject_page.html", user=current_user, resources=resources)
+    return render_template("subject_page.html", user=current_user, resources=subject_resources)
 
 
 @app.route("/filter_levels/<education_level_name>")
