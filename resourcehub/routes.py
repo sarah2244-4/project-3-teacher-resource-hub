@@ -175,10 +175,10 @@ def add_resource():
             education_level_id=education_level_id
         )
         db.session.add(new_resource)
-
         db.session.commit()
         flash("Resource added successfully", category="success")
         return redirect(url_for("profile"))
+    
     return render_template("add_resource.html", user=current_user, username=current_user.username, subjects=subjects, education_levels=education_levels)
 
 
@@ -189,21 +189,22 @@ def download(resource_id):
         flash("You need to be logged in to download resources.", category="error")
         return redirect(url_for("login"))
     
-    resource = Resource.query.get_or_404(resource_id)
+    else:
+        resource = Resource.query.get_or_404(resource_id)
 
-    if resource:
-        # Retrieve only the file name
-        file_name = os.path.basename(resource.file)
+        if resource:
+            # Retrieve only the file name
+            file_name = os.path.basename(resource.file)
 
-        # Create a BytesIO stream from the file data
-        file_data = BytesIO(resource.data)
+            # Create a BytesIO stream from the file data
+            file_data = BytesIO(resource.data)
 
-        return send_file(file_data, download_name=file_name, as_attachment=True)
+            return send_file(file_data, download_name=file_name, as_attachment=True)
 
-    # Handle the case where the resource with the given ID is not found
-    flash("Resource not found", category="error")
+        # Handle the case where the resource with the given ID is not found
+        flash("Resource not found", category="error")
 
-    return redirect(url_for("profile"))
+        return redirect(url_for("profile"))
 
 
 @app.route("/view<int:resource_id>")
