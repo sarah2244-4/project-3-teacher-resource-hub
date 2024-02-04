@@ -329,6 +329,11 @@ form label {
   font-size: 1rem;
 }
 
-select {
- place-self: 0;
+#errorMessage {
+  background-color: var(--yellow-alpha); 
+  width: 70%;
+  color: black;
+  font-size: 18px;
+  margin: 0 auto;
+  
 }

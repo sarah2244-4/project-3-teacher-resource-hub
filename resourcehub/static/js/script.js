@@ -21,10 +21,32 @@ document.addEventListener("DOMContentLoaded", function () {
 		event.preventDefault(); // Prevent the default form submission
 
 		// Validate form fields
+		let title = document.getElementById("resource_title").value;
+		let description = document.getElementById("resource_description").value;
 		let subject = document.getElementById("subject").value;
 		let educationLevel = document.getElementById("education_level").value;
 		let file = document.getElementById("file").value;
 
+		if (!title) {
+			document.getElementById("errorMessage").innerText = "Please add a title.";
+			return;
+		}
+
+		if (description.length < 20) {
+			document.getElementById("errorMessage").innerText =
+				"Please add a description with at least 20 characters.";
+			return;
+		}
+
+		if (!title) {
+			document.getElementById("errorMessage").innerText = "Please add a title.";
+			return;
+		}
+		if (!description) {
+			document.getElementById("errorMessage").innerText =
+				"Please add a description.";
+			return;
+		}
 		if (!subject || !educationLevel) {
 			// Display an error message on the page
 			document.getElementById("errorMessage").innerText = "Please select both a subject and an education level.";
