@@ -7,13 +7,16 @@
         <p class="inline"><span class="bold">Subject:</span> {{ resource.subject.subject_name }}</p>
         <p class="inline right"><span class="bold">Level:</span> {{ resource.education_level.level }}</p>
         <hr>
-        <!-- Download button -->
-        <a href="{{ url_for('download', resource_id=resource.id) }}" class="bold download-icon">
-            <i class="fa-solid fa-file-arrow-down"></i> <span >Download</span>
-        </a>
         <p class="right">Uploaded by {{ resource.user.username }}</p>
         <br>
         <p class="date right">{{ resource.date_created.strftime('%d %B, %Y') }}</p>
+        <!-- Download button -->
+        <a href="{{ url_for('download', resource_id=resource.id) }}" class="bold download-icon">
+            <i class="fa-solid fa-file-arrow-down"></i> <span >Download File</span> 
+            <br>
+            <span class="small-text">{{ resource.file }}</span>
+        </a>
+        
     </div>
         
     <h1 class="title">{{ resource.resource_title }}</h1>

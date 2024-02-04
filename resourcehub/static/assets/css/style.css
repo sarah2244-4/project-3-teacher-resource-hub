@@ -53,6 +53,17 @@ main {
   padding: 40px;
 }
 
+.small-text {
+  font-size: 0.8rem;
+  font-weight: 100;
+}
+
+@media screen and (max-width: 600px) {
+  .small-text {
+    font-size: 0.65rem;
+  }
+}
+
 /* Buttons */
 
 button {
@@ -292,6 +303,8 @@ th {
 .download-icon {
   font-size: 25px;
   color: var(--red);
+  display: block;
+  line-height: 0.27em; 
 }
 
 .download-icon:hover, .download-icon:focus, .download-icon:active {
@@ -316,4 +329,6 @@ form label {
   font-size: 1rem;
 }
 
-
+select {
+ place-self: 0;
+}

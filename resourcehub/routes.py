@@ -9,6 +9,7 @@ from datetime import datetime
 from io import BytesIO
 
 
+
 @app.route("/")
 def home():
     return render_template("index.html", user=current_user)
@@ -130,7 +131,7 @@ def delete_profile(user_id):
             return redirect(url_for("home"))
 
     # user.id == current_user.id;
-    # if user: 
+    # if user: s
     #     if user == current_user.id:
     #         db.session.delete(user)
     #         db.session.commit()
@@ -155,20 +156,13 @@ def add_resource():
         # Convert subject and education level names to IDs
         subject_id = next((subject.id for subject in subjects if subject.subject_name == subject_name), None)
         education_level_id = next((level.id for level in education_levels if level.level == education_level_name), None)
-        
-        if subject_id is None or education_level_id is None:
-            flash("Invalid subject or education level", category="error")
-            return redirect(url_for("add_resource"))
 
         if "file" in request.files:
             file = request.files["file"]
-            filename = secure_filename(file.filename)
-            data = file.read()
-            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-                
-        else:
-            flash("Invalid file", category="error")
-            return redirect(url_for("add_resource"))
+            if file: 
+                filename = secure_filename(file.filename)
+                data = file.read()
+                file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
         
         new_resource = Resource(
             resource_title=resource_title,
