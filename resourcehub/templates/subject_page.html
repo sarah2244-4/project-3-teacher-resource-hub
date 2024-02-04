@@ -3,8 +3,57 @@
 
 <div class="container">
 
-    <h1>Resources</h1>
+    <!-- Filter resource buttons for each subject page -->
+    {% if request.path in [
+        '/subject_page/biology',
+        '/filter/biology/ks3',
+        '/filter/biology/gcse',
+        '/filter/biology/as-level',
+        '/filter/biology/a-level'
+    ] %}
+        <h1>Biology Resources</h1>
+        
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('subject_page', subject_name='biology') }}';">All</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='ks3', subject_name='biology') }}';">KS3</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='gcse', subject_name='biology') }}';">GCSE</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='as-level', subject_name='biology') }}';">AS-Level</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='a-level', subject_name='biology') }}';">A-Level</div>
+    
+    {% elif request.path in [
+        '/subject_page/chemistry',
+        '/filter/chemistry/ks3',
+        '/filter/chemistry/gcse',
+        '/filter/chemistry/as-level',
+        '/filter/chemistry/a-level'
+    ] %}
+        <h1>Chemistry Resources</h1>
 
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('subject_page', subject_name='chemistry') }}';">All</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='ks3', subject_name='chemistry') }}';">KS3</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='gcse', subject_name='chemistry') }}';">GCSE</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='as-level', subject_name='chemistry') }}';">AS-Level</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='a-level', subject_name='chemistry') }}';">A-Level</div>
+
+    {% elif request.path in [
+        '/subject_page/physics',
+        '/filter/physics/ks3',
+        '/filter/physics/gcse',
+        '/filter/physics/as-level',
+        '/filter/physics/a-level'
+    ] %}
+        <h1>Physics Resources</h1>
+
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('subject_page', subject_name='physics') }}';">All</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='ks3', subject_name='physics') }}';">KS3</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='gcse', subject_name='physics') }}';">GCSE</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='as-level', subject_name='physics') }}';">AS-Level</div>
+        <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='a-level', subject_name='physics') }}';">A-Level</div>
+
+
+    {% endif %}
+
+    
+    
     <!-- Table view -->
     <table>
         <thead>

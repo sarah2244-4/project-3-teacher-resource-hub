@@ -7,7 +7,7 @@ from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 from io import BytesIO
-from sqlalchemy import func
+from sqlalchemy.orm import joinedload
 
 
 
@@ -221,7 +221,6 @@ def view(resource_id):
 @app.route("/subject_page/<subject_name>")
 def subject_page(subject_name):
      
-    education_levels = EducationLevel.query.all()
     resources = Resource.query.all()
 
     subject_resources = []
@@ -233,17 +232,21 @@ def subject_page(subject_name):
     return render_template("subject_page.html", user=current_user, resources=subject_resources)
 
 
-@app.route("/filter_levels/<education_level_name>")
-def filter_levels(education_level_name):
-    """
-    Creates cookie 
-    """
-    session["url"] = request.url
-    
+@app.route('/filter/<subject_name>/<education_level>')
+def filter(subject_name, education_level):
 
-    return render_template(
-        "filter_resources.html",
-        user=current_user)
+    resources = Resource.query.all()
+
+    subject_resources = []
+
+    for resource in resources: 
+        if resource.subject.subject_name.lower() == subject_name.lower():
+            if resource.education_level.level.lower() == education_level.lower():
+                subject_resources.append(resource)
+    
+    return render_template('subject_page.html', user=current_user, resources=subject_resources)
+
+
 
 
 @app.route("/edit_resource/<int:resource_id>", methods=["GET", "POST"])

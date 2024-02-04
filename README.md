@@ -140,7 +140,7 @@ The font Franklin Gothic Medium was chosen for headers and buttons as it is a bo
 
 
 
-Future features - images of documents if more time to implement for all the types of documents that would be uploaded, love button, comments, filter by topic within each subject, upload more than 1 file for each resource.
+Future features - images of documents if more time to implement for all the types of documents that would be uploaded, love button, comments, filter by topic within each subject, upload more than 1 file for each resource, add many to many table to add extra filters 
 
 unfixed bugs - dropdown font wouldn't change 
 
@@ -150,6 +150,5 @@ Favicon -favicon.io
 
 
 FINISH RESOURCE VIEW (INTEGERATE EXTRA FEATURE SUCH AS COMMENTS HERE)
-FINISH SUBJECT VIEW PAGES 
-ADD FILTER BY LEVEL TO EACH SUBJECT PAGE 
+
 
