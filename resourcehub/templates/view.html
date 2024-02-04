@@ -43,6 +43,64 @@
             </a>
         {% endif %}
     </div>
+
+    <div class="divider"></div>
+
+    <div class="comment-box">
+        <h4 class="bold">Comments: </h4>
+        {% for comment in comments %}
+            <p class="comment-text">{{ comment.comment_text }}</p>
+            <p class="small-text grey-text">By {{ comment.user.username }}</p>
+            
+            {% if current_user.is_authenticated and current_user == comment.user %}
+
+                <a href="{{ url_for('edit_comment', id=comment.id)}}" class="icon-button bold small-text">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+
+                <form class="edit-comment-form" style="display: none;">
+                    <textarea name="edited-comment" rows="3">{{ comment.comment_text }}</textarea>
+                    <button type="button" class="btn save-edit-btn">Save</button>
+                </form>
+
+                <a class="modal-trigger icon-button bold small-text" href="#commentModal">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+
+                <div id="commentModal" class="modal">
+                    <div class="modal-content">
+                        <h4 class="bold">This will delete {{ comment.comment_text }} permanently. Are you sure?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="modal-close btn-flat">No</a>
+                        <a href="{{ url_for('delete_comment', id=comment.id) }}" class="modal-close btn-flat">
+                            Yes
+                        </a>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+    
+    </div>
+
+    <div>
+        <form action="{{ url_for('add_comment') }}" method="POST">
+            <div class="input-field col s12">
+                <textarea id="comment" name="comment" class="materialize-textarea" minlength="2" required></textarea>
+                <label for="comment">Add comment:</label>
+            </div>
+            <input type="hidden" name="resource_id" value="{{ resource.id }}">
+            <div class="col s12">
+                <button type="submit" class="btn" id="commentSubmit">
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
+
+    
 </div>
 
 <!-- Modal Structure -->
@@ -57,6 +115,9 @@
         </a>
     </div>
 </div>
+
+
+
 
 
 

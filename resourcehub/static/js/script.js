@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	let modals = document.querySelectorAll(".modal");
 	M.Modal.init(modals);
 
-	const formSubmitButton = document.getElementById("formSubmit");
+	const formSubmitButton = document.getElementById("resourceSubmit");
 
 	if (formSubmitButton) {
 		formSubmitButton.addEventListener("click", function (event) {
@@ -68,6 +68,30 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.getElementById("resourceForm").submit();
 		});
 	}
+
+	let editBtns = document.querySelectorAll(".edit-comment-btn");
+	let editForms = document.querySelectorAll(".edit-comment-form");
+
+	editBtns.forEach((btn, index) => {
+		btn.addEventListener("click", function () {
+			// Hide all edit forms
+			editForms.forEach((form) => (form.style.display = "none"));
+
+			// Show the corresponding edit form
+			editForms[index].style.display = "block";
+		});
+	});
+	const saveEditBtns = document.querySelectorAll(".save-edit-btn");
+
+	saveEditBtns.forEach((btn, index) => {
+		btn.addEventListener("click", function () {
+			// TODO: Handle the submission of the edit form using AJAX or form submission
+			// Update the comment on the server and update the UI
+			// Optionally, hide the edit form after saving
+			editForms[index].style.display = "none";
+		});
+	});
+
 
 });
 

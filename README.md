@@ -149,6 +149,6 @@ lesson-planning image from [Pexels](https://www.pexels.com/photo/silver-ipad-545
 Favicon -favicon.io 
 
 
-FINISH RESOURCE VIEW (INTEGERATE EXTRA FEATURE SUCH AS COMMENTS HERE)
+INTEGERATE EXTRA FEATURE SUCH AS COMMENTS HERE
 
 

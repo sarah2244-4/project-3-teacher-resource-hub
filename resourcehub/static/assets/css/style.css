@@ -349,3 +349,35 @@ form label {
   background-color: rgba(0, 0, 0, 0.05);
   width: 70%;
 }
+
+/* .comment-box {
+  background-color: var(--yellow-alpha);
+  padding: 5px 20px;
+}
+
+.comment-text {
+  font-size: 1.2em;
+} */
+
+.comment-box {
+  background-color: var(--yellow-alpha);
+  padding: 10px 20px;
+
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment-text {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+/* Add a subtle border between comments */
+.comment-box .comment-text:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+#commentSubmit {
+  margin-bottom: 2rem;
+}

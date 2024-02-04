@@ -16,6 +16,10 @@ def home():
     return render_template("index.html", user=current_user)
 
 
+def redirect_url(default='index'):
+    return request.referrer
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -131,15 +135,6 @@ def delete_profile(user_id):
             flash("Unauthorized action", category="error")
             return redirect(url_for("home"))
 
-    # user.id == current_user.id;
-    # if user: s
-    #     if user == current_user.id:
-    #         db.session.delete(user)
-    #         db.session.commit()
-    #         flash("Profile successfully deleted", category="success")
-
-    #         return redirect(url_for("home"))
-
 
 @app.route("/add_resource", methods=["GET", "POST"])
 @login_required
@@ -210,13 +205,66 @@ def download(resource_id):
 @app.route("/view<int:resource_id>")
 def view(resource_id):
     resource = Resource.query.get_or_404(resource_id)
+    
+    comments = Comment.query.filter_by(resource_id=resource_id).all()
 
     if resource:
-        return render_template("view.html", user=current_user, resource=resource)
+        return render_template("view.html", user=current_user, resource=resource, comments=comments)
     else:
         flash("Resource not found", category="error")
         return redirect(url_for("profile"))
     
+
+@app.route("/add_comment", methods=["GET", "POST"])
+@login_required
+def add_comment():
+    if request.method =="POST":
+        comment_text = request.form.get("comment")
+        resource_id = request.form.get("resource_id")
+
+        new_comment = Comment(comment_text=comment_text, resource_id=resource_id, user_id = current_user.id)
+        db.session.add(new_comment)
+        db.session.commit()
+        flash("Comment added successfully", category="success")
+
+        return redirect(url_for("view", user=current_user, resource_id=resource_id))
+    
+
+@app.route("/delete_comment/<int:id>")
+@login_required
+def delete_comment(id):
+    comment = Comment.query.get(id)
+
+    if comment:
+        # Check if the current user has the authorization to delete the comment
+        if current_user.id == comment.user_id:
+            db.session.delete(comment)
+            db.session.commit()
+            flash("Comment successfully deleted", category="success")
+        else:
+            flash("Unauthorized action", category="error")
+    else:
+        flash("Comment not found", category="error")
+
+    return redirect(redirect_url())
+
+
+@app.route("/edit_comment/<int:id>", methods=["GET", "POST"])
+@login_required
+def edit_comment(id):
+    comment = Comment.query.get(id)
+
+    if request.method == "POST":
+        if current_user.id == comment.user_id:
+            comment.comment_text = request.form.get("comment")
+            db.session.delete(comment)
+            db.session.commit()
+            flash("Comment successfully edited", category="success")
+        else:
+            flash("Unauthorized action", category="error")
+
+    return redirect(redirect_url())
+
 
 @app.route("/subject_page/<subject_name>")
 def subject_page(subject_name):
