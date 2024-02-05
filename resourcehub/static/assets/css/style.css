@@ -70,7 +70,7 @@ button {
   background-color: var(--dark-blue);
 }
 
-.btn, .bg-link, .profile-table-icon, .clickable-row, .download-icon, .not-auth-link, .link {
+.btn, .bg-link, .profile-table-icon, .clickable-row, .download-icon, .not-auth-link, .link, .modal-close {
   -webkit-transition: ease-in-out 0.35s;
   -moz-transition: ease-in-out 0.35s;
   transition: ease-in-out 0.35s;
@@ -118,6 +118,12 @@ button {
 
 .page-footer a:hover {
   color: var(--yellow);
+}
+
+/* Navbar */
+
+.dropdown-content li a {
+  color: var(--dark-blue);
 }
 
 /* Index Page */
@@ -245,6 +251,7 @@ table {
   width: 100%;
   table-layout: fixed;
   margin: 20px 0 60px;
+  overflow-wrap: break-word;
 }
 
 thead {
@@ -263,8 +270,16 @@ th {
   width: 15%;
 }
 
+.thirty {
+  width: 30%;
+}
+
 .forty {
   width: 40%;
+}
+
+.fifty {
+  width: 50%;
 }
 
 .five {
@@ -307,7 +322,7 @@ th {
   line-height: 0.27em; 
 }
 
-.download-icon:hover, .download-icon:focus, .download-icon:active {
+.download-icon:hover, .download-icon:focus, .download-icon:active, .modal-close:hover, .modal-close:focus, .modal-close:active {
   color: var(--darkred);
 }
 
@@ -338,6 +353,13 @@ form label {
   
 }
 
+.form-message {
+  width: 70%;
+  color: var(--darkred);
+  font-size: 18px;
+  margin: auto;
+}
+
 /* Subject page */
 
 .not-auth-link {
@@ -350,19 +372,11 @@ form label {
   width: 70%;
 }
 
-/* .comment-box {
-  background-color: var(--yellow-alpha);
-  padding: 5px 20px;
-}
-
-.comment-text {
-  font-size: 1.2em;
-} */
+/* Comments */
 
 .comment-box {
   background-color: var(--yellow-alpha);
   padding: 10px 20px;
-
   margin-top: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
@@ -372,7 +386,6 @@ form label {
   margin-bottom: 5px;
 }
 
-/* Add a subtle border between comments */
 .comment-box .comment-text:not(:last-child) {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
@@ -393,4 +406,52 @@ form label {
 
 #edit-comment-form {
   margin-top: 20vh;
+}
+
+/* Modal */
+
+.modal {
+  background-color: var(--yellow);
+}
+
+.modal .modal-footer {
+  background-color: var(--yellow);
+}
+
+.modal-close {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .modal-content h4 {
+    font-size: 20px;
+    padding-bottom: 0;
+  }
+  .modal-close {
+    font-size: 15px;;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .large-resource-table {
+    display: none;
+  }
+  .large-comment-table {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  td {
+    font-size: 0.94rem;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .small-resource-table {
+    display: none;
+  }
+  .small-comment-table {
+    display: none;
+  }
 }

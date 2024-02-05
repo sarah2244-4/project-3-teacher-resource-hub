@@ -184,16 +184,29 @@ The font Franklin Gothic was chosen for headers and buttons as it is a bold sans
 
 - images of documents if more time to implement for all the types of documents that would be uploaded
 - love button
-- upload more than 1 file for each resource
+- upload more than 1 file for each resource and be able to add or delete individual files from the resource.
 - add many to many table to add extra filters
 - edit comments on the same page
+- Add pagination to tables
+
+fixed bugs - 
+
+- The rows of the table overlapped on smaller screens. Without adding horizontal scroll bars or making text too small to read, created tables with fewer columns to display on smaller screens. Most vital information was shown as the rest can still be accessed when the row is clicked. 
+
+unfixed bugs -  
+- The upload file button can be accidentally clicked from other parts of the form.
 
 
-unfixed bugs - dropdown font wouldn't change 
 
 lesson-planning image from [Pexels](https://www.pexels.com/photo/silver-ipad-545057/)
 
 Favicon -favicon.io 
 
 
+TO DO : (urgency)
+Complete README
+Upload database online 
+Deploy on Render
+
+Fix promo alignment 
 

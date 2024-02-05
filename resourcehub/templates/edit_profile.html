@@ -5,18 +5,18 @@
     <!-- Modal Structure -->
     <div id="delete-user-modal" class="modal">
         <div class="modal-content">
-            <h4 class="bold">This will delete the account associated with {{ user.email }} permanently. Are you sure?</h4>
+            <h4>This will delete the account associated with <span class="bold">{{ user.email }}</span> permanently. Are you sure?</h4>
         </div>
         <div class="modal-footer">
-            <a href="#" class="modal-close btn-flat">No</a>
-            <a href="{{ url_for('delete_profile', user_id=current_user.id) }}" class="modal-close btn-flat">
+            <a href="#" class="modal-close bold btn-flat">No</a>
+            <a href="{{ url_for('delete_profile', user_id=current_user.id) }}" class="modal-close bold btn-flat">
                 Yes
             </a>
         </div>
     </div>
 
     <div class="l12 m6">
-        <a class="btn right modal-trigger bold delete-profile" href="#delete-user-modal">Delete profile</a>
+        <a class="btn right modal-trigger delete-profile" href="#delete-user-modal">Delete profile</a>
         <form method="POST">
             <h3>Edit Profile</h3>
             <div class="form-group">

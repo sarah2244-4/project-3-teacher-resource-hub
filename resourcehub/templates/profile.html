@@ -13,7 +13,9 @@
     
     <a class="btn add-btn" href="{{ url_for('add_resource') }}">Add</a>
 
-    <table>
+    <!-- Resource table for large screens -->
+
+    <table class="large-resource-table">
         <thead>
             <tr>
                 <th class="twenty">Title</th>
@@ -29,7 +31,7 @@
             <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
                 <td>{{ resource.resource_title }}</td>
                 <td id="table-description">{{ resource.resource_description }}</td>
-                <td>{{ resource.subject.subject_name }}</td>
+                <td class="table-subject">{{ resource.subject.subject_name }}</td>
                 <td>{{ resource.education_level.level }}</td>
                 <td>{{ resource.date_created.strftime('%d %B, %Y') }}</td>
                 <td>
@@ -44,15 +46,39 @@
         {% endfor %}
     </table>
 
+    <!-- Resource table for small screens -->
+
+    <table class="small-resource-table">
+        <thead>
+            <tr>
+                <th class="thirty">Title</th>
+                <th class="fifty">Description</th>
+                <th class="twenty">Subject</th>
+            </tr>
+        </thead>
+        {% for resource in user.resources %}
+        <tbody>
+            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                <td>{{ resource.resource_title }}</td>
+                <td id="table-description">{{ resource.resource_description }}</td>
+                <td class="table-subject">{{ resource.subject.subject_name }}</td>
+            </tr>
+            
+        </tbody>
+        {% endfor %}
+    </table>
+
     
     <h4>Your Comments</h4>
 
     <div class="divider"></div>
 
-    <table>
+    <!-- Large comment table -->
+    
+    <table class="large-comment-table">
         <thead>
             <tr>
-                <th class="forty">Resource</th>
+                <th class="thirty">Resource</th>
                 <th class="forty">Comment</th>
                 <th class="twenty">Date Commented</th>
             </tr>
@@ -64,6 +90,29 @@
                 <td>{{ resource.resource_title }}</td>
                 <td>{{ comment.comment_text }}</td>
                 <td>{{ comment.date_posted.strftime('%d %B, %Y') }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    {% endfor %}
+
+    </table>
+
+    
+    <!-- Small comment table -->
+    
+    <table class="small-comment-table">
+        <thead>
+            <tr>
+                <th class="thirty">Resource</th>
+                <th class="">Comment</th>
+            </tr>
+        </thead>
+        {% for resource in resources %}
+        <tbody>
+            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                {% for comment in user.comments if comment.resource_id == resource.id %}
+                <td>{{ resource.resource_title }}</td>
+                <td>{{ comment.comment_text }}</td>
                 {% endfor %}
             </tr>
         </tbody>
