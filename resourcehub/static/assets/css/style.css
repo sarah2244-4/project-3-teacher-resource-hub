@@ -390,3 +390,7 @@ form label {
   font-size: 2.2em;
   text-align: center;
 }
+
+#edit-comment-form {
+  margin-top: 20vh;
+}

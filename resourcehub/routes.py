@@ -1,5 +1,5 @@
 import os
-from flask import render_template, flash, url_for, request, redirect, send_file
+from flask import render_template, flash, url_for, request, redirect, send_file, session
 from resourcehub import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -249,22 +249,27 @@ def delete_comment(id):
     return redirect(redirect_url())
 
 
-# @app.route("/edit_comment/<int:id>", methods=["GET", "POST"])
-# @login_required
-# def edit_comment(id):
-#     comment = Comment.query.get(id)
+@app.route("/edit_comment/<int:id>", methods=["GET", "POST"])
+@login_required
+def edit_comment(id):
+    comment = Comment.query.get(id)
 
-#     if request.method == "POST":
-#         if current_user.id == comment.user_id:
-#             comment.comment_text = request.form.get("comment")
-#             db.session.delete(comment)
-#             db.session.commit()
-#             flash("Comment successfully edited", category="success")
-#         else:
-#             flash("Unauthorized action", category="error")
+    if request.method == "POST":
+        new_comment_text = request.form.get("edit-comment")
+        if comment:
+            if current_user.id == comment.user_id:
+                if new_comment_text:
+                    comment.comment_text = new_comment_text
+                    db.session.commit()
+                    flash("Comment successfully edited", category="success")
+                    print(f"Redirecting to: {redirect_url()}")
+                    return redirect(url_for("profile"))
+                else:
+                    flash("Comment text cannot be empty", category="error")
+            else:
+                flash("Unauthorized action", category="error")
 
-#     return redirect(redirect_url())
-
+    return render_template("edit_comment.html", comment=comment, user=current_user)
 
 @app.route("/subject_page/<subject_name>")
 def subject_page(subject_name):
