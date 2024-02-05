@@ -38,15 +38,15 @@
                     <a href="" data-target="mobile-demo" class="sidenav-trigger nav-link"><i class="fas fa-bars"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if user.is_authenticated %}
-                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
-                        <li><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link bold">Home</a></li>
+                        <li><a href="{{ url_for('profile') }}" class="nav-link bold">Profile</a></li>
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
+                        <li><a class="dropdown-trigger nav-link bold" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link bold"></i></a></li>
                         <li><a href="{{ url_for('logout') }}" class="waves-effect waves-light btn">Logout</a></li>
                         {% else %}
-                        <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <li><a href="{{ url_for('home') }}" class="nav-link bold">Home</a></li>
                         <!-- Dropdown Trigger -->
-                        <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
+                        <li><a class="dropdown-trigger nav-link bold" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
                         <li><a href="{{ url_for('signup') }}" class="waves-effect btn">Sign Up</a></li>
                         <li><a href="{{ url_for('login') }}" class="waves-effect btn">Login</a></li>
                         {% endif %}

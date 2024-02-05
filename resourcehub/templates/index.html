@@ -3,7 +3,7 @@
 
 <div class="hero">
     <div class="hero-content">
-        <h1 class="hero-title">Making Your Lesson Planning Easier</h1>
+        <h1 class="hero-title bold">Making Your Lesson Planning Easier</h1>
 
     </div>
 </div>
@@ -44,22 +44,22 @@
     <h2 class="header">Explore our subjects</h2>
     <div class="row">
         <div class="col s12 m4">
-            <a href="#">
-                <div class="card-panel bg-link">
+            <a href="{{ url_for('subject_page', subject_name='biology') }}">
+                <div class="card-panel subject-panel bold bg-link">
                     Biology 
                 </div>
             </a>
         </div>
         <div class="col s12 m4">
-            <a href="#">
-                <div class="card-panel bg-link">
+            <a href="{{ url_for('subject_page', subject_name='chemistry') }}">
+                <div class="card-panel subject-panel bold bg-link">
                     Chemistry
                 </div>
             </a>
         </div>
         <div class="col s12 m4">
-            <a href="#">
-                <div class="card-panel bg-link">
+            <a href="{{ url_for('subject_page', subject_name='physics') }}">
+                <div class="card-panel subject-panel bold bg-link">
                     Physics
                 </div>
             </a>
