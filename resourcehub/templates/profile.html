@@ -45,7 +45,31 @@
     </table>
 
     
-   
+    <h4>Your Comments</h4>
+
+    <div class="divider"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="forty">Resource</th>
+                <th class="forty">Comment</th>
+                <th class="twenty">Date Commented</th>
+            </tr>
+        </thead>
+        {% for resource in resources %}
+        <tbody>
+            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                {% for comment in user.comments if comment.resource_id == resource.id %}
+                <td>{{ resource.resource_title }}</td>
+                <td>{{ comment.comment_text }}</td>
+                <td>{{ comment.date_posted.strftime('%d %B, %Y') }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    {% endfor %}
+
+    </table>
 
 </div>
    
