@@ -54,8 +54,8 @@
 
     
     
-    <!-- Table view -->
-    <table>
+    <!-- Resource table for large screens -->
+    <table class="large-resource-table">
         <thead>
             <tr>
                 <th class="twenty">Title</th>
@@ -83,6 +83,28 @@
                     {% endif %}
                 </td>
                 
+            </tr>
+            
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <!-- Resource table for small screens -->
+
+    <table class="small-resource-table">
+        <thead>
+            <tr>
+                <th class="thirty">Title</th>
+                <th class="fifty">Description</th>
+                <th class="twenty">Subject</th>
+            </tr>
+        </thead>
+        {% for resource in user.resources %}
+        <tbody>
+            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                <td>{{ resource.resource_title }}</td>
+                <td id="table-description">{{ resource.resource_description }}</td>
+                <td class="table-subject">{{ resource.subject.subject_name }}</td>
             </tr>
             
         </tbody>
