@@ -54,12 +54,6 @@ main {
   font-weight: 100;
 }
 
-@media screen and (max-width: 600px) {
-  .small-text {
-    font-size: 0.65rem;
-  }
-}
-
 /* Buttons */
 
 button {
@@ -174,6 +168,20 @@ button {
 .promo-icon {
   font-size: 60px;
   color: var(--blue)
+}
+
+.promo-header {
+  font-weight: 600;
+  height: 150px;
+  text-align: center;
+}
+
+.lower {
+  padding-top: 20px;
+}
+
+.promo-text {
+  font-size: 1.7rem;
 }
 
 /* Subject Cards */
@@ -338,6 +346,10 @@ th {
   margin-right: 20px;
 }
 
+.filter {
+  margin-bottom: 5px;
+}
+
 /* Forms */
 
 form label {
@@ -430,9 +442,6 @@ form label {
   .modal-close {
     font-size: 15px;;
   }
-}
-
-@media screen and (max-width: 900px) {
   .large-resource-table {
     display: none;
   }
@@ -453,5 +462,23 @@ form label {
   }
   .small-comment-table {
     display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .small-text {
+    font-size: 0.65rem;
+  }
+  .promo-header {
+    height: auto;
+  }
+  .promo-text {
+    margin-bottom: 100px;
+  }
+  .subject-card {
+    padding: 0;
+  }
+  .card-panel {
+    margin: 4% auto;
   }
 }

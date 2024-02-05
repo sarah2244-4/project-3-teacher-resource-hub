@@ -20,16 +20,16 @@
         <div class="col s12 m4">
             <i class="fa-solid fa-users promo-icon"></i>
             <h3 class="promo-header">Collaborate with other teachers</h3>
-            <p class="promo-text">Every resource has been created and uploaded by other teachers.</p>
+            <p class="promo-text lower">Every resource has been created and uploaded by other teachers.</p>
         </div>
         <div class="col s12 m4">
             <i class="fa-solid fa-bolt promo-icon"></i>
-            <h3 class="promo-header">Reduce your workload</h3>
+            <h3 class="promo-header lower">Reduce your workload</h3>
             <p class="promo-text">Access a wealth of pre-made lesson plans and resources, saving you valuable time in lesson preparation.</p>
         </div>
         <div class="col s12 m4">
             <i class="fa-solid fa-lightbulb promo-icon"></i>
-            <h3 class="promo-header">Discover new ideas</h3>
+            <h3 class="promo-header lower">Discover new ideas</h3>
             <p class="promo-text">Explore innovative teaching strategies and diverse materials to keep your lessons fresh and engaging.</p>
         </div>
 
@@ -43,21 +43,21 @@
 <div class="container subject-card-container">
     <h2 class="header">Explore our subjects</h2>
     <div class="row">
-        <div class="col s12 m4">
+        <div class="col s12 m4 subject-card">
             <a href="{{ url_for('subject_page', subject_name='biology') }}">
                 <div class="card-panel subject-panel bold bg-link">
                     Biology 
                 </div>
             </a>
         </div>
-        <div class="col s12 m4">
+        <div class="col s12 m4 subject-card">
             <a href="{{ url_for('subject_page', subject_name='chemistry') }}">
                 <div class="card-panel subject-panel bold bg-link">
                     Chemistry
                 </div>
             </a>
         </div>
-        <div class="col s12 m4">
+        <div class="col s12 m4 subject-card">
             <a href="{{ url_for('subject_page', subject_name='physics') }}">
                 <div class="card-panel subject-panel bold bg-link">
                     Physics

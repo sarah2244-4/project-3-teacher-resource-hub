@@ -208,5 +208,5 @@ Complete README
 Upload database online 
 Deploy on Render
 
-Fix promo alignment 
+Order results by date
 
