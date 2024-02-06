@@ -5,6 +5,8 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 if os.path.exists("env.py"):
     import env  # noqa
+from resourcehub import routes, models  # noqa
+from resourcehub.models import User
 
 
 app = Flask(__name__)
@@ -20,10 +22,7 @@ login_manager = LoginManager()
 login_manager.login_view = "home"
 login_manager.init_app(app)
 
+
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
-from resourcehub import routes, models  # noqa
-from resourcehub.models import User
-
