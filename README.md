@@ -188,6 +188,7 @@ The font Franklin Gothic was chosen for headers and buttons as it is a bold sans
 - add many to many table to add extra filters
 - edit comments on the same page
 - Add pagination to tables
+- Order results by date
 
 fixed bugs - 
 
@@ -271,7 +272,4 @@ Favicon -favicon.io
 TO DO : (urgency)
 Complete README + testing
 Deploy on heroku
-
-Order results by date
-Close flashed messages
 

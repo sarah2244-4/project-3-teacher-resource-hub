@@ -255,8 +255,8 @@ def download(resource_id):
 
             return send_file(
                 file_data,
-                ownload_name=file_name,
-                s_attachment=True)
+                download_name=file_name,
+                as_attachment=True)
         else:
             flash("Resource not found", category="error")
             # return redirect(url_for("profile"))

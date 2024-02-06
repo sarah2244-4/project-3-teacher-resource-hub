@@ -18,17 +18,18 @@
 - [JS Validation](#js-validation)
 - [Lighthouse Testing](#lighthouse-testing)
 
+### Manual Testing 
 
 #### Responsivity
 
-| Tests for all gameplay | iPhone SE | Pixel 5 | Samsung Galazy S8+ | iPad Air | Surface Pro 7 | Nest Hub | Desktop |
+| All pages | iPhone SE | Pixel 5 | Samsung Galazy S8+ | iPad Air | Surface Pro 7 | Nest Hub | Desktop |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
 | Responsive | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
 | All buttons change when hovered over | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
 
 #### Browser Compatibility
 
-| Tests for all gameplay | Chrome | Firefox | Edge | Opera |
+| All pages | Chrome | Firefox | Edge | Opera |
 | --- | :---: | :---: | :---: | :---: |
 | Loads as expected | Yes | Yes | Yes | Yes |
 | Responsive | Yes | Yes | Yes | Yes |
@@ -37,8 +38,28 @@
 
 | User Action | Expected response | Correct Response |
 | --- | --- | :---: |
-| Click 5 Questions | Gives a quiz of 5 questions | Yes | 
-| Click 5 Questions | Changes colour | Yes | 
+| Type in website url | Loads home page | Yes | 
+| Click logo | Loads home page | Yes | 
+| Click Home button in navbar | Loads home page | Yes |
+| Hover over Resources button in nav bar | Dropdown menu appears | Yes |
+| Click Biology button in navbar dropdown | Biology resources appear | Yes |
+| Click Chemistry button in navbar dropdown | Chemistry resources appear | Yes |
+| Click Physics button in navbar dropdown | Physics resources appear | Yes |
+| Click Sign Up button in navbar dropdown | Sign up form appears | Yes |
+| Click Login button in navbar dropdown | Login form appears | Yes |
+| Submit sign up form with a field missing | Form does not submit and user is promtped to fill in required field | Yes |
+| Submit sign up form with existing username or email | Form does not submit and message is flashed to say they already exist | Yes |
+| Submit sign up form with passwords that don't match | Form does not submit and message is flashed to say passwords should match | Yes |
+| Submit valid sign up form | New user is created and profile page is loaded | Yes |
+| Click Edit Profile button on profile | Edit profile form appears | Yes |
+| Submit edit profile form with existing username or email | Form does not submit and message is flashed to say they already exist | Yes |
+| Submit valid edit profile form | Form is submitted and user is redirected to profile | Yes |
+| Click Add on profile to add resource | Add resource form appears | Yes |
+| Submit add resource form with missing field | Message appears above submit button to direct user which field to complete | Yes |
+| Submit valid add resource form | Form is submitted and user redirected to profile with flashed message to say successful | Yes |
+| Submit valid add resource form | New resource is displayed in the profile resource table | Yes |
+| Submit valid add resource form | New resource is displayed in the table of the relevant subject page | Yes |
+| 
 
 ### Testing User Stories
 
