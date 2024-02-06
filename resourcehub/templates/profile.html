@@ -93,16 +93,16 @@
             </tr>
         </thead>
         {% for resource in resources %}
-        <tbody>
-            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
-                {% for comment in user.comments if comment.resource_id == resource.id %}
-                <td>{{ resource.resource_title }}</td>
-                <td class="truncate">{{ comment.comment_text }}</td>
-                <td>{{ comment.date_posted.strftime('%d %B, %Y') }}</td>
-                {% endfor %}
-            </tr>
-        </tbody>
-    {% endfor %}
+            <tbody>
+            {% for comment in user.comments if comment.resource_id == resource.id %}
+                <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                    <td>{{ resource.resource_title }}</td>
+                    <td class="truncate">{{ comment.comment_text }}</td>
+                    <td>{{ comment.date_posted.strftime('%d %B, %Y') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% endfor %}
     </table>
     
     <!-- Small comment table -->
