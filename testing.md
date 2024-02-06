@@ -59,7 +59,14 @@
 | Submit valid add resource form | Form is submitted and user redirected to profile with flashed message to say successful | Yes |
 | Submit valid add resource form | New resource is displayed in the profile resource table | Yes |
 | Submit valid add resource form | New resource is displayed in the table of the relevant subject page | Yes |
-| 
+| Click download icon on resource in table | File is downloaded to user's computer | Yes |
+| Click on resource row in table | Large resource view appears | Yes |
+| View resource as logged in user | Download file button appears and downloades file to user's computer if clicked | Yes | 
+| View resource as guest user | Download file button is not present and user is directed to the login or signup page to download | Yes |
+| User who created resource view's resource | Edit and delete buttons are visible | Yes |
+| User who did not create resource view's resource | Edit and delete buttons are not visible | Yes |
+| View resource as logged in user | Add comment button is visible | Yes |
+| View resouece as guest user | Add comment button is not visible | Yes | 
 
 ### Testing User Stories
 

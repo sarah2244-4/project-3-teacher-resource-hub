@@ -93,21 +93,22 @@
     </div>
 
     <!-- Add comment form -->
-
-    <div>
-        <form action="{{ url_for('add_comment') }}" method="POST">
-            <div class="input-field col s12">
-                <textarea id="comment" name="comment" class="materialize-textarea" minlength="2" required></textarea>
-                <label for="comment">Add comment:</label>
-            </div>
-            <input type="hidden" name="resource_id" value="{{ resource.id }}">
-            <div class="col s12">
-                <button type="submit" class="btn" id="commentSubmit">
-                    Add
-                </button>
-            </div>
-        </form>
-    </div>
+    {% if current_user.is_authenticated %}
+        <div>
+            <form action="{{ url_for('add_comment') }}" method="POST">
+                <div class="input-field col s12">
+                    <textarea id="comment" name="comment" class="materialize-textarea" minlength="2" required></textarea>
+                    <label for="comment">Add comment:</label>
+                </div>
+                <input type="hidden" name="resource_id" value="{{ resource.id }}">
+                <div class="col s12">
+                    <button type="submit" class="btn" id="commentSubmit">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
 </div>
 
 <!-- Modal for deleting resource -->
