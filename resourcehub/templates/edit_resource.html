@@ -4,8 +4,12 @@
 <div class="container">
     <h3 class="center-align">Edit Resource</h3>
 
+    <!-- Edit resource form -->
+
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('edit_resource', resource_id=resource.id) }}" enctype="multipart/form-data">
+
+            <!-- Edit title -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-pen prefix"></i>
@@ -14,6 +18,8 @@
                     <label for="resource_title">Title</label>
                 </div>
             </div>
+
+            <!-- Edit description -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-rectangle-list prefix"></i>
@@ -22,6 +28,7 @@
                 </div>
             </div>
 
+            <!-- Edit subject -->
             <div class="input-field col s12">
                 <select id="subject" name="subject" required>
                     <option value="" disabled>Choose your subject</option>
@@ -32,6 +39,7 @@
                 <label for="subject">Subject</label>
             </div>
 
+            <!-- Edit education level -->
             <div class="input-field col s12">
                 <select id="education_level" name="education_level" required>
                     <option value="" disabled>Choose your level</option>
@@ -42,7 +50,7 @@
                 <label for="education_level">Education Level</label>
             </div>
 
-            <!-- File upload -->
+            <!-- Edit file with file upload -->
             <div class="file-field input-field">
                 <p class="form-message">If you upload a new file this will replace your old file! </p>
                 <div class="btn">
@@ -54,6 +62,7 @@
                 </div>
             </div>
 
+            <!-- Form submission -->
             <div class="row">
                 <div class="col s12 center-align">
                     <button type="submit" class="btn">

@@ -235,10 +235,6 @@ button {
   text-transform: capitalize;
 }
 
-.card-description {
-  
-}
-
 .card-action i, .card-action span {
   color: var(--yellow)
 }

@@ -2,15 +2,23 @@
 {% block content %}
 
 <div class="container">
+
+    <!-- Edit profile button -->
+
     <a class="btn right" href="{{ url_for('edit_profile') }}">Edit Profile</a>
+
     <h1 class="welcome">
         Welcome, {{ username }}
     </h1>
+
+    <!-- Resources -->
     
     <h3>Your Resources</h3>
 
     <div class="divider"></div>
     
+    <!-- Add resource button -->
+
     <a class="btn add-btn" href="{{ url_for('add_resource') }}">Add</a>
 
     <!-- Resource table for large screens -->
@@ -68,7 +76,8 @@
         {% endfor %}
     </table>
 
-    
+    <!-- Comments -->
+
     <h4>Your Comments</h4>
 
     <div class="divider"></div>
@@ -94,9 +103,7 @@
             </tr>
         </tbody>
     {% endfor %}
-
     </table>
-
     
     <!-- Small comment table -->
     
@@ -117,11 +124,8 @@
             </tr>
         </tbody>
     {% endfor %}
-
     </table>
 
 </div>
-   
-
 
 {% endblock %}

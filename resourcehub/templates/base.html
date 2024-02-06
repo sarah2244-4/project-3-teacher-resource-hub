@@ -14,8 +14,8 @@
     
     <title>Teacher Resource Hub</title>
 </head>
-<body>
 
+<body>
     <header>
         <!-- Dropdown Structure in Navbar -->
         <ul id="dropdown1" class="dropdown-content">
@@ -23,6 +23,7 @@
             <li><a href="{{ url_for('subject_page', subject_name='chemistry') }}">Chemistry</a></li>
             <li><a href="{{ url_for('subject_page', subject_name='physics') }}">Physics</a></li>
         </ul>
+
         <!-- Dropdown Structure in Mobile SideNav -->
         <ul id="dropdown2" class="dropdown-content">
             <li><a href="{{ url_for('subject_page', subject_name='biology') }}">Biology</a></li>
@@ -37,19 +38,26 @@
                     <a href="{{ url_for('home') }}" class="brand-logo"><img src="{{ url_for('static', filename='assets/images/colour-logo-removebg.png') }}" alt="Education Resource Hub logo" class="logo"></a>
                     <a href="" data-target="mobile-demo" class="sidenav-trigger nav-link"><i class="fas fa-bars"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        {% if user.is_authenticated %}
+
+                    <!-- Links for logged in users -->
+
+                    {% if user.is_authenticated %}
                         <li><a href="{{ url_for('home') }}" class="nav-link bold">Home</a></li>
                         <li><a href="{{ url_for('profile') }}" class="nav-link bold">Profile</a></li>
+
                         <!-- Dropdown Trigger -->
                         <li><a class="dropdown-trigger nav-link bold" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link bold"></i></a></li>
                         <li><a href="{{ url_for('logout') }}" class="waves-effect waves-light btn">Logout</a></li>
-                        {% else %}
+
+                        <!-- Links for new / logged out users -->
+                    {% else %}
                         <li><a href="{{ url_for('home') }}" class="nav-link bold">Home</a></li>
+
                         <!-- Dropdown Trigger -->
                         <li><a class="dropdown-trigger nav-link bold" href="#" data-target="dropdown1">Resources <i class="fa-solid fa-caret-down fa-sm nav-link"></i></a></li>
                         <li><a href="{{ url_for('signup') }}" class="waves-effect btn">Sign Up</a></li>
                         <li><a href="{{ url_for('login') }}" class="waves-effect btn">Login</a></li>
-                        {% endif %}
+                    {% endif %}
                     </ul>
                 </div>
             </nav>
@@ -57,12 +65,18 @@
 
         <!-- Mobile Sidenav -->
         <ul class="sidenav" id="mobile-demo">
+
+        <!-- Links for logged in users -->
+
             {% if user.is_authenticated %}
                 <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
                 <!-- Dropdown Trigger -->
                 <li><a class="dropdown-trigger nav-link" href="#" data-target="dropdown2">Resources <i class="fa-solid fa-caret-down fa-sm"></i></a></li>
                 <li><a href="{{ url_for('logout') }}" class="waves-effect btn">Logout</a></li>
+
+            <!-- Links for new / logged out users -->
+
             {% else %}
                 <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                 <!-- Dropdown Trigger -->
@@ -76,10 +90,13 @@
     <main>
         <div class="container">
 
+            <!-- Flashed messages -->
+
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
                 {% if category == "error" %}
+
                 <!-- Alert for error message -->
                 <div class="alert alert-danger card amber lighten-4 brown-text" role="alert">
                     <div class="card-content">
@@ -90,6 +107,7 @@
                 </div>
 
                 {% else %}
+
                 <!-- Alert for success message -->
                 <div class="alert alert-success card green lighten-4 green-text text-darken-4" role="alert">
                     <div class="card-content">
@@ -97,7 +115,6 @@
                         {{ message }}
                         <button class="btn-flat right" data-dismiss="alert"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></p>
                     </div>
-                    
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -105,14 +122,10 @@
             {% endwith %}
         </div>
 
-        
         {% block content %}
         {% endblock %}
 
-
     </main>
-
-
 
     <!-- Footer -->
     <footer class="page-footer">

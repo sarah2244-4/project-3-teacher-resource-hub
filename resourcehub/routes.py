@@ -7,12 +7,14 @@ from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
 from datetime import datetime
 from io import BytesIO
-from sqlalchemy.orm import joinedload
 
 
 
 @app.route("/")
 def home():
+    """
+    Renders homepage, detecting whether user is signed in. 
+    """
     return render_template("index.html", user=current_user)
 
 
@@ -22,6 +24,9 @@ def redirect_url(default='index'):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Checks email exists in user database and that the inputted hashed password matches the stored hashed password for the user. Logs user in or redirects with flashed messages.
+    """
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
@@ -40,16 +45,21 @@ def login():
     return render_template("login.html", user=current_user)
 
 
-
 @app.route("/logout")
 @login_required
 def logout():
+    """
+    Logs user out and redirects back to login page.
+    """
     logout_user()
     return redirect(url_for("login"))
 
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    """
+    Checks if email and username exist in the user database and that both password inputs match. If there is an issue, messages are flashed, otherwise new user is created and added to the database and the user is redirected to their profile page with their user id detected.
+    """
     if request.method =="POST":
         username = request.form.get("username")
         email = request.form.get("email")
@@ -57,9 +67,15 @@ def signup():
         confirm_password = request.form.get("confirm-password")
 
         # Validity Check
-        user = User.query.filter_by(email=email).first()
-        if user: 
+        existing_email = User.query.filter_by(email=email).first()
+        existing_username = User.query.filter_by(username=username).first()
+
+        if existing_email and existing_username:
+            flash("Username and email already exist.", category="error")
+        elif existing_email: 
             flash("Email already exists.", category="error")
+        elif existing_username: 
+            flash("Username already exists.", category="error")
         elif password != confirm_password: 
             flash("Passwords don't match.", category="error")
         else:
@@ -75,7 +91,9 @@ def signup():
 @app.route('/profile')
 @login_required
 def profile():
-    
+    """
+    User must be logged in to access this. Resources are rendered on the profile page and user id is detected.
+    """
     resources = list(Resource.query.order_by(Resource.date_created).all())
     return render_template("profile.html", user=current_user, username=current_user.username, resources=resources)
 
@@ -83,21 +101,24 @@ def profile():
 @app.route('/edit_profile', methods=["GET", "POST"])
 @login_required
 def edit_profile():
-    '''
-    Users can edit their username, email or password.
-    '''
+    """
+    Users must be logged in to access this. Users can edit their username, email or password. Detects whether an inputted username or email belongs to an existing user in the database and flashed messages if they do. Otherwise it updates user details and redirects to their profile.
+    """
     if request.method =="POST":
         username = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
 
         # Validity Check
-        user = User.query.filter_by(username=username).first()
-        user_email = User.query.filter_by(email=email).first()
-        if user: 
-            flash("Username already exists.", category="error")
-        elif user_email: 
+        existing_email = User.query.filter_by(email=email).first()
+        existing_username = User.query.filter_by(username=username).first()
+
+        if existing_email and existing_username:
+            flash("Username and email already exist.", category="error")
+        elif existing_email: 
             flash("Email already exists.", category="error")
+        elif existing_username: 
+            flash("Username already exists.", category="error")
         else:
             if username:
                 current_user.username = username
@@ -117,28 +138,29 @@ def edit_profile():
 @login_required
 def delete_profile(user_id):
     """
-    
+    User must be logged in. Detects logged in user id and if it matches the user id of the profile to be deleted, allows user to be deleted from the database.
     """
     if current_user.id == user_id:
-            # Retrieve the user from the database
-            user = User.query.get(user_id)
+        user = User.query.get(user_id)
 
-            if user:
-                db.session.delete(user)
-                db.session.commit()
-                flash("Profile successfully deleted", category="success")
-                return redirect(url_for("home"))
-            else:
-                flash("User not found", category="error")
-
-            # Handle the case where the current user ID doesn't match the provided user_id
-            flash("Unauthorized action", category="error")
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            flash("Profile successfully deleted", category="success")
             return redirect(url_for("home"))
+        else:
+            flash("User not found", category="error")
+
+        flash("Unauthorized action", category="error")
+        return redirect(url_for("home"))
 
 
 @app.route("/add_resource", methods=["GET", "POST"])
 @login_required
 def add_resource():
+    """
+    Must be logged in to access. Converts the selected subject name and education level name to the ids in the database. Creates secure filename by removing path for uploaded files, stores the binary data and saves it to the server. Adds resource to the database. 
+    """
     # Define subjects and education_levels for form
     subjects = Subject.query.all()
     education_levels = EducationLevel.query.all()
@@ -180,6 +202,9 @@ def add_resource():
 @app.route("/download/<resource_id>")
 @login_required
 def download(resource_id):
+    """
+    User must be logged in to access. Detects whether user is logged in. Finds resource and sends the filename and data as an attachment to the user. 
+    """
     if not current_user.is_authenticated:
         flash("You need to be logged in to download resources.", category="error")
         return redirect(url_for("login"))
@@ -196,7 +221,6 @@ def download(resource_id):
 
             return send_file(file_data, download_name=file_name, as_attachment=True)
 
-        # Handle the case where the resource with the given ID is not found
         flash("Resource not found", category="error")
 
         return redirect(url_for("profile"))
@@ -204,20 +228,29 @@ def download(resource_id):
 
 @app.route("/view<int:resource_id>")
 def view(resource_id):
+    """
+    Detects whether user is logged in. Allows any user to view the selected resource. If resource selected doesn't exist, user is redirected to profile if logged in or home if not logged in.
+    """
     resource = Resource.query.get_or_404(resource_id)
-    
     comments = Comment.query.filter_by(resource_id=resource_id).all()
 
     if resource:
         return render_template("view.html", user=current_user, resource=resource, comments=comments)
     else:
-        flash("Resource not found", category="error")
-        return redirect(url_for("profile"))
+        if current_user.is_authenticated:
+            flash("Resource not found", category="error")
+            return redirect(url_for("profile"))
+        else:
+            flash("Resource not found", category="error")
+            return redirect(url_for("home"))
     
 
 @app.route("/add_comment", methods=["GET", "POST"])
 @login_required
 def add_comment():
+    """
+    User must be logged in to access. Retrieves data from form and edits existing comment in database. 
+    """
     if request.method =="POST":
         comment_text = request.form.get("comment")
         resource_id = request.form.get("resource_id")
@@ -233,6 +266,9 @@ def add_comment():
 @app.route("/delete_comment/<int:id>")
 @login_required
 def delete_comment(id):
+    """
+    User must be logged in to access. Detects whether user is the user who created the comment. If user is, allows deletion of comment. If not, it redirects to previous page. 
+    """
     comment = Comment.query.get(id)
 
     if comment:
@@ -252,6 +288,9 @@ def delete_comment(id):
 @app.route("/edit_comment/<int:id>", methods=["GET", "POST"])
 @login_required
 def edit_comment(id):
+    """
+    User must be logged in to access. Finds comments from database. Determines whether user is the user who created the comment. If so, if there is text, edits the existing comment. If there is no comment, flashes message. 
+    """
     comment = Comment.query.get(id)
 
     if request.method == "POST":
@@ -271,11 +310,13 @@ def edit_comment(id):
 
     return render_template("edit_comment.html", comment=comment, user=current_user)
 
+
 @app.route("/subject_page/<subject_name>")
 def subject_page(subject_name):
-     
+    """
+    Detects subject name and renders page of resources for only that subject. Detects whether a user is logged in.
+    """
     resources = Resource.query.all()
-
     subject_resources = []
 
     for resource in resources: 
@@ -287,9 +328,10 @@ def subject_page(subject_name):
 
 @app.route('/filter/<subject_name>/<education_level>')
 def filter(subject_name, education_level):
-
+    """
+    Detects subject name and education level. Renders page of resources for only that subject and education level. Detects whether a user is logged in.
+    """
     resources = Resource.query.all()
-
     subject_resources = []
 
     for resource in resources: 
@@ -300,13 +342,11 @@ def filter(subject_name, education_level):
     return render_template('subject_page.html', user=current_user, resources=subject_resources)
 
 
-
-
 @app.route("/edit_resource/<int:resource_id>", methods=["GET", "POST"])
 @login_required
 def edit_resource(resource_id):
     """
-    
+    User must be logged in to access. Detects with user created the resource to be edited. Users can edit title, description, subject, education level and file for existing resource. 
     """
     resource = Resource.query.get_or_404(resource_id)
 
@@ -366,7 +406,7 @@ def edit_resource(resource_id):
 @login_required
 def delete_resource(resource_id):
     """
-    
+    User must be logged in to access. Detects whether user created resource to be edited, and if so allows deletion of resource from database. 
     """
     resource = Resource.query.get_or_404(resource_id)
     if resource: 
@@ -380,4 +420,7 @@ def delete_resource(resource_id):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """
+    Returns 404 page if page does not exist. Detects whether user is logged in.
+    """
     return render_template('404.html', user=current_user), 404

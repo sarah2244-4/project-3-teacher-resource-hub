@@ -3,7 +3,8 @@
 
 <div class="container">
 
-    <!-- Filter resource buttons for each subject page -->
+    <!-- Filter resource buttons for biology -->
+
     {% if request.path in [
         '/subject_page/biology',
         '/filter/biology/ks3',
@@ -20,6 +21,8 @@
         <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='as-level', subject_name='biology') }}';">AS-Level</div>
         <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='a-level', subject_name='biology') }}';">A-Level</div>
     
+    <!-- Filter resource buttons for chemistry -->
+
     {% elif request.path in [
         '/subject_page/chemistry',
         '/filter/chemistry/ks3',
@@ -35,6 +38,8 @@
         <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='gcse', subject_name='chemistry') }}';">GCSE</div>
         <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='as-level', subject_name='chemistry') }}';">AS-Level</div>
         <div class="btn filter"  onclick="window.location.href='{{ url_for('filter', education_level='a-level', subject_name='chemistry') }}';">A-Level</div>
+
+    <!-- Filter resource buttons for physics -->
 
     {% elif request.path in [
         '/subject_page/physics',
@@ -54,10 +59,9 @@
 
 
     {% endif %}
-
-    
     
     <!-- Resource table for large screens -->
+
     <table class="large-resource-table">
         <thead>
             <tr>
@@ -85,9 +89,7 @@
                     </a>
                     {% endif %}
                 </td>
-                
             </tr>
-            
         </tbody>
         {% endfor %}
     </table>
@@ -109,11 +111,9 @@
                 <td id="table-description">{{ resource.resource_description }}</td>
                 <td class="table-subject">{{ resource.subject.subject_name }}</td>
             </tr>
-            
         </tbody>
         {% endfor %}
     </table>
-
 </div>
 
 {% endblock %}

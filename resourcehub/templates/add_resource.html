@@ -4,7 +4,12 @@
 <div class="container">
     <h3 class="center-align">Add Resource</h3>
     <div class="row card-panel">
+
+        <!-- Add resource form -->
+
         <form  id="resourceForm" class="col s12" method="POST" action="{{ url_for('add_resource') }}" enctype="multipart/form-data">
+
+            <!-- Resource title -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-pen prefix"></i>
@@ -12,6 +17,8 @@
                     <label for="resource_title">Title</label>
                 </div>
             </div>
+
+            <!-- Resource desciption -->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-rectangle-list prefix"></i>
@@ -20,6 +27,7 @@
                 </div>
             </div>
 
+            <!-- Resource subject dropdown -->
             <div class="input-field col s12">
                 <select id="subject" name="subject">
                     <option value="" disabled selected>Choose your subject</option>
@@ -30,6 +38,7 @@
                 <label for="subject">Subject</label>
             </div>
 
+            <!-- Resource education level dropdown -->
             <div class="input-field col s12">
                 <select id="education_level" name="education_level">
                     <option value="" disabled selected>Choose your level</option>
@@ -51,8 +60,10 @@
                 </div>
             </div>
 
+            <!-- Error message -->
             <div id="errorMessage" class="error-message"></div>
             
+            <!-- Form submit -->
             <div class="row">
                 <div class="col s12 center-align">
                     <button type="submit" class="btn" id="resourceSubmit">

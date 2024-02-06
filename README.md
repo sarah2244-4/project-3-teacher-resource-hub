@@ -209,4 +209,5 @@ Upload database online
 Deploy on Render
 
 Order results by date
+Close flashed messages
 
