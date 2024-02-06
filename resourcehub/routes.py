@@ -163,12 +163,14 @@ def delete_profile(user_id):
             db.session.delete(user)
             db.session.commit()
             flash("Profile successfully deleted", category="success")
-            return redirect(url_for("home"))
         else:
             flash("User not found", category="error")
-
-        flash("Unauthorized action", category="error")
-        return redirect(url_for("home"))
+    else:
+        flash(
+            "Unauthorized action. You are not logged in as this user", 
+              category="error")
+    
+    return redirect(url_for("home"))
 
 
 @app.route("/add_resource", methods=["GET", "POST"])
@@ -259,7 +261,6 @@ def download(resource_id):
                 as_attachment=True)
         else:
             flash("Resource not found", category="error")
-            # return redirect(url_for("profile"))
 
 
 @app.route("/view<int:resource_id>")
@@ -279,11 +280,10 @@ def view(resource_id):
             resource=resource,
             comments=comments)
     else:
+        flash("Resource not found", category="error")
         if current_user.is_authenticated:
-            flash("Resource not found", category="error")
             return redirect(url_for("profile"))
         else:
-            flash("Resource not found", category="error")
             return redirect(url_for("home"))
 
 
@@ -321,14 +321,15 @@ def delete_comment(id):
     If not, it redirects to previous page.
     """
     comment = Comment.query.get(id)
-
     if comment:
         if current_user.id == comment.user_id:
             db.session.delete(comment)
             db.session.commit()
             flash("Comment successfully deleted", category="success")
         else:
-            flash("Unauthorized action", category="error")
+            flash(
+                "Unauthorized action. You are not the author of the comment.", 
+                category="error")
     else:
         flash("Comment not found", category="error")
 
@@ -354,12 +355,16 @@ def edit_comment(id):
                     comment.comment_text = new_comment_text
                     db.session.commit()
                     flash("Comment successfully edited", category="success")
-                    print(f"Redirecting to: {redirect_url()}")
-                    return redirect(url_for("profile"))
                 else:
                     flash("Comment text cannot be empty", category="error")
             else:
-                flash("Unauthorized action", category="error")
+                flash(
+                    "Unauthorized action. You are not the author of this comment.",
+                    category="error")
+        else:
+            flash("Comment not found.", category="error")
+            
+        return redirect(url_for("profile"))
 
     return render_template(
         "edit_comment.html",
@@ -375,7 +380,6 @@ def subject_page(subject_name):
     """
     resources = Resource.query.all()
     subject_resources = []
-
     for resource in resources:
         if resource.subject.subject_name.lower() == subject_name.lower():
             subject_resources.append(resource)
@@ -395,7 +399,6 @@ def filter(subject_name, education_level):
     """
     resources = Resource.query.all()
     subject_resources = []
-
     for resource in resources:
         if resource.subject.subject_name.lower() == subject_name.lower():
             if resource.education_level.level.lower() == \
@@ -475,7 +478,9 @@ def edit_resource(resource_id):
             flash("Resource updated successfully", category="success")
             return redirect(url_for("view", resource_id=resource.id))
         else: 
-            flash("Unauthorized action. You are not the author of this resource.", category="error")
+            flash(
+                "Unauthorized action. You are not the author of this resource.",
+                category="error")
             return redirect(url_for("home"))
 
     return render_template(
@@ -500,8 +505,15 @@ def delete_resource(resource_id):
             db.session.delete(resource)
             db.session.commit()
             flash("Resource successfully deleted", category="success")
-
             return redirect(url_for("profile"))
+        else:
+            flash(
+                "Unauthorized action. You are not logged in as this user.",
+                category="error")
+            return redirect(url_for("profile"))
+    else:
+        flash("Resource not found")
+        return redirect(url_for("profile"))
 
 
 @app.errorhandler(404)
