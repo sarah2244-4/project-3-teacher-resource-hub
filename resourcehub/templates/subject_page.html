@@ -73,29 +73,33 @@
                 <th class="five"> </th>
             </tr>
         </thead>
-        {% for resource in resources %}
-        <tbody>
-            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
-                <td>{{ resource.resource_title }}</td>
-                <td id="table-description">{{ resource.resource_description }}</td>
-                <td>{{ resource.subject.subject_name }}</td>
-                <td>{{ resource.education_level.level }}</td>
-                <td>{{ resource.date_created.strftime('%d %B, %Y') }}</td>
-                <td>
-                    {% if current_user.is_authenticated %}
-                    <!-- Download button -->
-                    <a href="{{ url_for('download', resource_id=resource.id) }}">
-                        <i class="fa-solid fa-file-arrow-down profile-table-icon"></i>
-                    </a>
-                    {% endif %}
-                </td>
-            </tr>
-            {% if no resource %}
-            <tr>
-                <td>There are no resources yet</td>
-            </tr>
+        {% if resources %}
+            {% for resource in resources %}
+            <tbody>
+                <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                    <td>{{ resource.resource_title }}</td>
+                    <td id="table-description">{{ resource.resource_description }}</td>
+                    <td>{{ resource.subject.subject_name }}</td>
+                    <td>{{ resource.education_level.level }}</td>
+                    <td>{{ resource.date_created.strftime('%d %B, %Y') }}</td>
+                    <td>
+                        {% if current_user.is_authenticated %}
+                        <!-- Download button -->
+                        <a href="{{ url_for('download', resource_id=resource.id) }}">
+                            <i class="fa-solid fa-file-arrow-down profile-table-icon"></i>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
-        {% endfor %}
+        {% else %}
+            <tbody>
+                <tr>
+                    <td colspan="6">There are no resources for this level yet.</td>
+                </tr>
+            </tbody>
+        {% endif %}
     </table>
 
     <!-- Resource table for small screens -->
