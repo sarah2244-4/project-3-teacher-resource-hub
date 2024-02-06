@@ -13,14 +13,12 @@ class User(db.Model, UserMixin):
     resources = db.relationship(
         "Resource",
         backref="user",
-        cascade="all,
-        delete",
+        cascade="all, delete",
         lazy=True)
     comments = db.relationship(
         "Comment",
         backref="user",
-        cascade="all,
-        delete",
+        cascade="all, delete",
         lazy=True)
 
     def __repr__(self):
@@ -49,8 +47,7 @@ class Resource(db.Model):
     comments = db.relationship(
         "Comment",
         backref="resource",
-        cascade="all,
-        delete",
+        cascade="all, delete",
         lazy=True)
 
     def __repr__(self):
