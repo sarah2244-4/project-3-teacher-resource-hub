@@ -93,6 +93,7 @@
                 </tr>
             {% endfor %}
         </tbody>
+        <!-- If no resources found -->
         {% else %}
             <tbody>
                 <tr>
@@ -112,15 +113,24 @@
                 <th class="twenty">Subject</th>
             </tr>
         </thead>
-        {% for resource in user.resources %}
-        <tbody>
-            <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
-                <td>{{ resource.resource_title }}</td>
-                <td id="table-description">{{ resource.resource_description }}</td>
-                <td class="table-subject">{{ resource.subject.subject_name }}</td>
-            </tr>
-        </tbody>
-        {% endfor %}
+        {% if resources %}
+            {% for resource in resources %}
+            <tbody>
+                <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
+                    <td>{{ resource.resource_title }}</td>
+                    <td id="table-description">{{ resource.resource_description }}</td>
+                    <td class="table-subject">{{ resource.subject.subject_name }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        <!-- If no resources found -->
+        {% else %}
+            <tbody>
+                <tr>
+                    <td colspan="6">There are no resources for this level yet.</td>
+                </tr>
+            </tbody>
+        {% endif %}
     </table>
 </div>
 
