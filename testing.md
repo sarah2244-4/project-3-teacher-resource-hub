@@ -51,6 +51,9 @@
 | Submit sign up form with existing username or email | Form does not submit and message is flashed to say they already exist | Yes |
 | Submit sign up form with passwords that don't match | Form does not submit and message is flashed to say passwords should match | Yes |
 | Submit valid sign up form | New user is created and profile page is loaded | Yes |
+| Submit login form with incorrect email | Form does not submit and message flashed that email does not exist | Yes |
+| Submit login form with incorrect password | Form does not submit and message flashed that password is incorrect | Yes |
+| Submit valid login form | Profile page loads and message flashed to say login is successful | Yes |
 | Click Edit Profile button on profile | Edit profile form appears | Yes |
 | Submit edit profile form with existing username or email | Form does not submit and message is flashed to say they already exist | Yes |
 | Submit valid edit profile form | Form is submitted and user is redirected to profile | Yes |
@@ -66,7 +69,9 @@
 | User who created resource view's resource | Edit and delete buttons are visible | Yes |
 | User who did not create resource view's resource | Edit and delete buttons are not visible | Yes |
 | View resource as logged in user | Add comment button is visible | Yes |
-| View resouece as guest user | Add comment button is not visible | Yes | 
+| View resource as guest user | Add comment button is not visible | Yes | 
+
+
 
 ### Testing User Stories
 

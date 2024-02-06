@@ -474,6 +474,9 @@ def edit_resource(resource_id):
             db.session.commit()
             flash("Resource updated successfully", category="success")
             return redirect(url_for("view", resource_id=resource.id))
+        else: 
+            flash("Unauthorized action. You are not the author of this resource.", category="error")
+            return redirect(url_for("home"))
 
     return render_template(
         "edit_resource.html",
