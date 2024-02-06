@@ -196,17 +196,81 @@ fixed bugs -
 unfixed bugs -  
 - The upload file button can be accidentally clicked from other parts of the form.
 
+## Testing 
+
+View the testing document [here](testing.md). 
 
 
-lesson-planning image from [Pexels](https://www.pexels.com/photo/silver-ipad-545057/)
+## Technologies Used 
 
+### Main Languages
+
+HTML5, CSS3 and Javascript used. 
+
+### Frameworks, Libraries and Programs
+
+- Visual Studio Code as code editor. 
+- GitHub Desktop to store the local repository and allow me to code using VS code. 
+- [GitHub](https://github.com/) to store the repository online.
+- [Google fonts](https://fonts.google.com/) for the font.
+- [Font Awesome](https://fontawesome.com/) for icons.
+
+## Deployment
+
+### GitHub Pages
+
+To deploy the site to GitHub pages the steps followed were:
+- Log into GitHub account
+- Open the correct repository 
+- In the GitHub repository, go to 'Settings'
+- In the settings menu, go to 'Pages' under the subheading 'Code and automation'
+- Under the heading 'Source', select 'Deploy from a branch' from the dropdown menu
+- Under the heading 'Branch', ensure 'main' is selected from the dropdown and the folder selected is '/(root)'
+- Click 'Save' and the website will be live in a few minutes
+- The live link can be found [here](https://sarah2244-4.github.io/science-revision-quiz/)
+
+### Local Source Files
+
+To deploy the website using source files follow the steps:
+- Open the GitHub repository [here](https://github.com/sarah2244-4/science-revision-quiz)
+- In the repository click on the green '<> Code' dropdown
+- Select 'Download ZIP'
+- Navigate to the Zip file in your file explorer and open it
+- Right click on the 'index.html' file and open with the chosen browser
+
+To clone the repsoitory: 
+- Open the GitHub repository [here](https://github.com/sarah2244-4/science-revision-quiz)
+- In the repository click on the green '<> Code' dropdow
+- Copy the HTTPS URL link
+- Open the terminal on the computer's IDE
+- Type in `git clone` followed by the copied URL 
+
+## Credits
+
+### Content
+
+- I referred back to code I had previously written throughout the course, including the jest testing project to help with the automated Jest tests.
+- [Am I Responsive?](https://ui.dev/amiresponsive) to display a mock-up of my site in different viewports.
+- I used [Coolors](https://coolors.co/) to help me come up with a colour scheme.
+- I used [WebAIM](https://webaim.org/resources/contrastchecker/) to check the contrast of the colours used on all the elements. 
+
+### Images
+
+- lesson-planning image from [Pexels](https://www.pexels.com/photo/silver-ipad-545057/)
+- 
 Favicon -favicon.io 
 
 
+### Acknowledgements
+
+- Thank you to Code Institute for providing detailed lessons.
+- Thank you to the Code Institute community on Slack for providing advice and motivation.
+- Thank you to my mentor Spencer for his invaluable advice and expertise.
+
+
 TO DO : (urgency)
-Complete README
-Upload database online 
-Deploy on Render
+Complete README + testing
+Deploy on heroku
 
 Order results by date
 Close flashed messages

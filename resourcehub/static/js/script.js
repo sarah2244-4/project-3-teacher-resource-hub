@@ -15,6 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	let modals = document.querySelectorAll(".modal");
 	M.Modal.init(modals);
 
+	// Add click event listener to all close buttons within alerts
+	let closeButtons = document.querySelectorAll(".alert-close");
+
+	closeButtons.forEach(function (closeButton) {
+		closeButton.addEventListener("click", function () {
+			let alertParents = document.querySelectorAll(".alert");
+			// Fade out and remove each alert
+			alertParents.forEach(function (alertParent) {
+				alertParent.style.transition = "opacity 300ms";
+				alertParent.style.opacity = 0;
+				setTimeout(function () {
+					alertParent.parentNode.removeChild(alertParent);
+				}, 300);
+			});
+		});
+	});
+
 	const formSubmitButton = document.getElementById("resourceSubmit");
 
 	if (formSubmitButton) {
@@ -68,31 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.getElementById("resourceForm").submit();
 		});
 	}
-
-	let editBtns = document.querySelectorAll(".edit-comment-btn");
-	let editForms = document.querySelectorAll(".edit-comment-form");
-
-	editBtns.forEach((btn, index) => {
-		btn.addEventListener("click", function () {
-			// Hide all edit forms
-			editForms.forEach((form) => (form.style.display = "none"));
-
-			// Show the corresponding edit form
-			editForms[index].style.display = "block";
-		});
-	});
-	const saveEditBtns = document.querySelectorAll(".save-edit-btn");
-
-	saveEditBtns.forEach((btn, index) => {
-		btn.addEventListener("click", function () {
-			// TODO: Handle the submission of the edit form using AJAX or form submission
-			// Update the comment on the server and update the UI
-			// Optionally, hide the edit form after saving
-			editForms[index].style.display = "none";
-		});
-	});
-
-
 });
 
 

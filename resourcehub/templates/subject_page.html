@@ -78,7 +78,7 @@
             <tbody>
                 <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
                     <td>{{ resource.resource_title }}</td>
-                    <td id="table-description">{{ resource.resource_description }}</td>
+                    <td id="table-description" class="truncate">{{ resource.resource_description }}</td>
                     <td>{{ resource.subject.subject_name }}</td>
                     <td>{{ resource.education_level.level }}</td>
                     <td>{{ resource.date_created.strftime('%d %B, %Y') }}</td>
@@ -118,7 +118,7 @@
             <tbody>
                 <tr class="clickable-row" onclick="window.location.href='{{ url_for('view', resource_id=resource.id) }}';">
                     <td>{{ resource.resource_title }}</td>
-                    <td id="table-description">{{ resource.resource_description }}</td>
+                    <td id="table-description" class="truncate">{{ resource.resource_description }}</td>
                     <td class="table-subject">{{ resource.subject.subject_name }}</td>
                 </tr>
             </tbody>
