@@ -90,6 +90,10 @@
                     {% endif %}
                 </td>
             </tr>
+            {% if no resource %}
+            <tr>
+                <td>There are no resources yet</td>
+            </tr>
         </tbody>
         {% endfor %}
     </table>
