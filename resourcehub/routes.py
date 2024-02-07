@@ -111,9 +111,9 @@ def profile():
         resources=resources)
 
 
-@app.route('/edit_profile', methods=["GET", "POST"])
+@app.route('/edit_profile/<int:user_id>', methods=["GET", "POST"])
 @login_required
-def edit_profile():
+def edit_profile(user_id):
     """
     Users must be logged in to access this.
     Users can edit their username, email or password.
@@ -122,29 +122,35 @@ def edit_profile():
     Otherwise it updates user details and redirects to their profile.
     """
     if request.method == "POST":
-        username = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
+        if current_user.id == user_id:
+            user = User.query.get(user_id)
+            username = request.form.get("username")
+            email = request.form.get("email")
+            password = request.form.get("password")
 
-        # Validity Check
-        existing_email = User.query.filter_by(email=email).first()
-        existing_username = User.query.filter_by(username=username).first()
-        if existing_email and existing_username:
-            flash("Username and email already exist.", category="error")
-        elif existing_email:
-            flash("Email already exists.", category="error")
-        elif existing_username:
-            flash("Username already exists.", category="error")
+            # Validity Check
+            existing_email = User.query.filter_by(email=email).first()
+            existing_username = User.query.filter_by(username=username).first()
+            if existing_email and existing_username:
+                flash("Username and email already exist.", category="error")
+            elif existing_email:
+                flash("Email already exists.", category="error")
+            elif existing_username:
+                flash("Username already exists.", category="error")
+            else:
+                if username:
+                    user.username = username
+                if email:
+                    user.email = email
+                if password:
+                    user.password = generate_password_hash(password)
+                db.session.commit()
+                flash("Profile successfully updated", category="success")
+                return redirect(url_for("profile"))
         else:
-            if username:
-                current_user.username = username
-            if email:
-                current_user.email = email
-            if password:
-                current_user.password = generate_password_hash(password)
-            db.session.commit()
-            flash("Profile successfully updated", category="success")
-            return redirect(url_for("profile"))
+            flash(
+                "Unauthorized action. You are not logged in as this user",
+                category="error")
 
     return render_template("edit_profile.html", user=current_user)
 
@@ -263,7 +269,7 @@ def download(resource_id):
             flash("Resource not found", category="error")
 
 
-@app.route("/view<int:resource_id>")
+@app.route("/view/<int:resource_id>")
 def view(resource_id):
     """
     Detects whether user is logged in.

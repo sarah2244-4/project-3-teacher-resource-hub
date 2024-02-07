@@ -139,14 +139,24 @@
 
 | Goal | Result | Image |
 | --- | --- | :---: |
-| View information so I know what the quiz is about | The header displays the quiz title and the text on the landing page describes what the quiz is about. | [Instructions](assets/images/instructions.JPG) |
-| View instructions so I know how to play | The text on the landing page provides basic how to play instructions. | [Instructions](assets/images/instructions.JPG) |
+| Find information about the website to see what it is used for. | The hero text on the index page displays a line explaining the aim of the website straight away. There is a promotion table beneath this explaining why users should use the webiste. | [](assets/images/instructions.JPG) |
+| View resources before signing up to see if they look worth it. | The index page has large cards as links to the different subject pages. Guest users can view titles and descriptions of all resources without logging in. The navbar also contains a dropdown for the different subjects so the resources can be found from any page. | [](assets/images/instructions.JPG) |
+| Easily and intuitively navigate without using browser buttons. | The navbar is present on every page. Forms contain cancel buttons to allow users to redirect to the previous page if they no longer wish to submit the form. | |
+| Easily sign up using a simple form. | The sign up form contains 4 clearly labelled fields with stars that show they are required. If a field is invalid a message is flashed to user explaining what went wrong. | | 
+| Easily download a resource I like the look of once I have signed up. | Files can be downloaded from the icon in the tables on the subject pages on a large screen or on the detailed resource view. It is made clear at the top above the title in a different colour and large font. | | 
 
 ### Existing Users
 
 | Goal | Result | Image |
 | --- | --- | :---: |
-| See if I have improved by comparing my score to previous tries | The end of quiz well done message appears with a score. Users can compare this score to previous goes. Users can also try the quiz again if they want another go immediately using the try again button under the well done message. | [Final score](assets/images/end-quiz.JPG) [Try again button](assets/images/end-quiz.JPG) |
+| Login to my account easily. | Navbar clearly displays login button and form is very simple. If details are invalid, form returns flashed message explaining why. | | 
+| Share my resources with other users using a simple form and view them. | An add button is under the title 'Your resources' on the profile page. A simple form is loaded and clearly labelled with what should be included. If an invalid is submitted messages are displayed above the submit button explaining why. On the profile page a table shows user-created resources. Each row can be clicked to load a detailed resource view. | | 
+| Edit or delete my uploaded resources easily. | The profile contains a table of user-created resources. The rows can be clicked to display the detailed resource view. There are clearly labelled edit and delete icons. The edit form is pre-filled in with existing information to make it easy to remember what needs changing. The delete button opens a modal for user to confirm deletion. | | 
+| View other people's resources, filtering by subject or level, and download the resources I want to use. | The subject pages contain all resources uploaded for that subject. Each subject has filters for each level to filter the resources. If there are no resources a message appears informing the user there aren't any rather than an empty table so users don't think there was an error. On a large screen the download icon is present and it can be downloaded straight away. Otherwise the row can be clicked to open the detailed resource view and there is a clear download button in a different colour at the top of the page. | | 
+| View comments to see what other users thought of resources before downloading. | The detailed resource view page has comments displayed at the bottom of the page. | | 
+| Provide feedback for other users on resources and edit or delete my comments easily. | Comments can be added on the detailed resource page. The form is on the same page and the page is reloaded once it has been submitted so users can immediately view their comment. The user can view an edit and delete button next to their comments and they lead to a simple edit form and a delete modal for user to confirm deletion. | | 
+| Edit my details or delete my account. | On the user profile there is an edit profile at the top of the page. This leads to a simple form where the current username and email are displayed, allowing users to decide whether anything needs changing. This page also displays the delete profile button, which opens a modal for user to confirm deletion. | | 
+
 
 ## Bugs
 
@@ -158,7 +168,7 @@
 
 ### Unresolved Bugs
 
-- The upload file button can be accidentally clicked from other parts of the form. Tried to move field lower abd change styling of form but it didn't fix this. 
+- The upload file button can be accidentally clicked from other parts of the form. Tried to move field lower and change styling of form but it didn't fix this. 
 
 
 ## Validation

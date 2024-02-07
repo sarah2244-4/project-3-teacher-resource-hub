@@ -389,7 +389,7 @@ form label {
 .comment-box {
   background-color: var(--yellow-alpha);
   padding: 10px 20px;
-  margin-top: 20px;
+  margin: 20px 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -414,10 +414,6 @@ form label {
 .error-p {
   font-size: 2.2em;
   text-align: center;
-}
-
-#edit-comment-form {
-  margin-top: 20vh;
 }
 
 /* Modal */
