@@ -368,6 +368,10 @@ form label {
   margin: auto;
 }
 
+.form-padding {
+  padding: 2%;
+}
+
 /* Subject page */
 
 .not-auth-link {

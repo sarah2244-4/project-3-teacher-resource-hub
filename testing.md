@@ -180,7 +180,7 @@ All pages have since been run through the validator and all files pass.
 
 I used the [W3 Validator](https://validator.w3.org/) to validate my styles.css file. 
 
-### JS Validation
+### Javascript Validation
 
 I used [JSHint](https://jshint.com/) to validate my script.js file.
 
@@ -188,14 +188,109 @@ The only problems shown was 1 undefined variable. This came from Materialize so 
 
 ![JSHint message](assets/images/jshint.JPG)
 
+### Python Validation
+
+I used the [Code Institute Python Linter]() to validate my routes.py file. The initial errors were extra whitespaces and some lines were too long. After fixing these, there were no errors. 
+
 ### Lighthouse Testing
 
-In initial testing:
-- There were chrome extension issues affecting performance so the page did not load in time. I retested it in a private browser.
-- Accessibility showed that the github icon needed a description so I added an aria-label description. 
+<details>
+<summary>Index Page</summary>
 
-Once everything had been fixed I tested the pages with Lighthouse again and they now have high values, with accessibility and SEO at 100 and performance at 99/98. 
+- 
 
-Index page:
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
 
-### PEP8 Validation
+</details>
+
+<details>
+<summary>Register</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Login</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Profile</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Edit Profile</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Add Resource</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Edit Resource</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Subject Page</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>View Resource</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>Edit Comment</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+<details>
+<summary>404 Page</summary>
+
+- 
+
+![Index Page Lighthouse Test](/static/images/readme/testing/editdetailslh.webp)
+
+</details>
+
+Return to [README](README.md).
