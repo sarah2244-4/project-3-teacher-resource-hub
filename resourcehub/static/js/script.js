@@ -86,10 +86,3 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 });
-
-
-// document.getElementById("my-link").addEventListener("click", function (e) {
-// 	console.log("Click happened for: " + e.target.id);
-// });
-
-

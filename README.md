@@ -190,15 +190,7 @@ The font Franklin Gothic was chosen for headers and buttons as it is a bold sans
 - Add pagination to tables
 - Order results by date
 
-#### Fixed bugs  
 
-- The rows of the table overlapped on smaller screens. Without adding horizontal scroll bars or making text too small to read, created tables with fewer columns to display on smaller screens. Most vital information was shown as the rest can still be accessed when the row is clicked. 
-- Comments were added in same row if more than one comment was added to a resource. To fix, had to move for loop outside the table row. 
-- Alerts wouldn't close when the close button was clicked. Fix was to add javascript to add an event listener to close the alert when the button is clicked. 
-
-#### Unfixed bugs 
-
-- The upload file button can be accidentally clicked from other parts of the form. Tried to move field lower abd change styling of form but it didn't fix this. 
 
 ## Testing 
 
