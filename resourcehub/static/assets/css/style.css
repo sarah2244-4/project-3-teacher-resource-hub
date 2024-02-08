@@ -332,7 +332,7 @@ th {
   line-height: 0.7em; 
 }
 
-.download-icon:hover, .download-icon:focus, .download-icon:active, .modal-close:hover, .modal-close:focus, .modal-close:active, .download-icon .small-text {
+.download-icon:hover, .download-icon:focus, .download-icon:active, .modal-close:hover, .modal-close:focus, .modal-close:active, .download-icon .small-text, .link {
   color: var(--darkred);
 }
 
@@ -414,10 +414,6 @@ form label, .input-field label {
 
 #commentSubmit {
   margin-bottom: 2rem;
-}
-
-.link {
-  color: var(--blue);
 }
 
 .error-p {
