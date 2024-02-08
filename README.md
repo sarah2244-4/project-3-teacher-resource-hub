@@ -2,7 +2,7 @@
 
 The Teacher Resource Hub is a website designed for teachers to collaborate with each other by sharing lesson resources with each other. Users will be able to share their own designs and download resources from others.
 
-The site is live, the link to this is found [HERE](https://sarah2244-4.github.io/project-3-teacher-resource-hub/).
+The site is live, the link to this is found [HERE](https://teacher-resource-hub-cb97a00db36f.herokuapp.com/).
 
 ![Website mockup](assets/images/mockup.JPG)
 
@@ -261,7 +261,9 @@ The font Franklin Gothic was chosen for headers and buttons as it is a very clea
 <details>
 <summary>Detailed Resource View</summary>
 
-- At the top are the subject and education level. Below these are the download link and details of user and upload date. The download link includes the filename so users can see if it matches the title. They are separated by a line break to clearly separate the information and keep the important subject and level distinctly clear to find. This section isn't as wide as the main section as a visual way to divide the sections as well as preventing the information from looking too far apart. 
+- At the top are the subject and education level. Below these are the download link and details of user and upload date. The download link includes the filename so users can see if it matches the title. They are separated by a line break to clearly separate the information and keep the important subject and level distinctly clear to find. 
+- This section isn't as wide as the main section as a visual way to divide the sections as well as preventing the information from looking too far apart. 
+- On a mobile, the top section is as wide as the rest of the page to stop the content being squashed together. 
 - Logged in users who created the resource also have edit and delete buttons below so they can edit or delete it. 
 - The next section contains the title and description to show what has been uploaded. 
 - The next section is the comments for the resource. The comments are visible to all users of the webiste. Logges in users who uploaded the comments will see an edit and delete icon by their comment so they can edit or delete it if they wish. 

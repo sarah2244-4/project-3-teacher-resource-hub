@@ -32,7 +32,7 @@
                 <select id="subject" name="subject">
                     <option value="" disabled selected>Choose your subject</option>
                     {% for subject in subjects %}
-                        <option value="{{ subject.subject_name }}" id="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
+                        <option value="{{ subject.subject_name }}"> {{ subject.subject_name }}</option>
                     {% endfor %}
                 </select>
                 <label for="subject">Subject</label>
@@ -43,7 +43,7 @@
                 <select id="education_level" name="education_level">
                     <option value="" disabled selected>Choose your level</option>
                     {% for education_level in education_levels %}
-                        <option value="{{ education_level.level }}" id="{{ education_level.level }}">{{ education_level.level }}</option>
+                        <option value="{{ education_level.level }}">{{ education_level.level }}</option>
                     {% endfor %}
                 </select>
                 <label for="education_level">Education Level</label>
@@ -56,7 +56,7 @@
                     <input type="file" id="file" name="file">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload a file">
+                    <input class="file-path validate" type="text" placeholder="Upload a file" aria-label="Upload a file">
                 </div>
             </div>
 
