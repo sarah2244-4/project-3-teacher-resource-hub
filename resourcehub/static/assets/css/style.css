@@ -127,10 +127,10 @@ button {
 .hero {
     position: relative;
     height: 90vh;
-    background-image: url('../images/lesson-planning.jpg');
+    background-image: url('../images/lesson-planning-web-file.webp');
     background-size: cover;
     background-position: center;
-    color: #fff; /* Text color */
+    color: #fff; 
     text-align: center;
     display: flex;
     align-items: center;
@@ -171,6 +171,7 @@ button {
 }
 
 .promo-header {
+  font-size: 3rem;
   font-weight: 600;
   height: 150px;
   text-align: center;
@@ -181,7 +182,7 @@ button {
 }
 
 .promo-text {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 /* Subject Cards */
@@ -350,6 +351,7 @@ th {
 
 form label {
   font-size: 1rem;
+  color: #666;
 }
 
 #errorMessage {
