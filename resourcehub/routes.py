@@ -6,7 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from resourcehub.models import User, Resource, Comment, Subject, EducationLevel
 from flask_login import login_user, login_required, logout_user, current_user
-from datetime import datetime
 from io import BytesIO
 
 

@@ -103,12 +103,9 @@ The colour palette was selected using the palette generator on [Coolors](coolors
 
 I used a [contrast checker](https://webaim.org/resources/contrastchecker/) to ensure elements had a high enough contrast ratio.
 
-![Initial choice colours](assets/images/choice-contrast-one.JPG)
-![Fixed choice colours](assets/images/choice-contrast-fixed.JPG)
-
 ### Typography
 
-The font Franklin Gothic was chosen for headers and buttons as it is a bold sans-serif font that helps everything stand out. For the smaller text, a different font was chosen as it complements the header font. 
+The font Franklin Gothic was chosen for headers and buttons as it is a very clean sans-serif font that made everything clear on the site. It is a commonly used font on websites for this reason. When made bigger and bolder, it stands out against the thinner text so I didn't feel the need to use another font with it.
 
 ### Effects 
 
@@ -122,12 +119,14 @@ The font Franklin Gothic was chosen for headers and buttons as it is a bold sans
 - The site is as consistent as possible across all screen sizes. 
 - A small, fairly neutral, colour palette was used for consistency with blue and red added for pops of colour where needed. 
 - All buttons/links are animated to make it clear that they could be selectable.
+- The off-white background fits in with the colour palette and helps remove the harsh white background. This is particularly useful for people with reading difficulties. All forms have a white background to stand out from the background and help the text stand out. This wasn't as harsh as the full white background. 
 - Cancel buttons are red so they stand out as warning in case users clicked on something by accident. 
-- I wanted my hero image fairly bright to make the site welcoming, so I added a dark background to the text overlay so the text is readable. 
+- The navbar contains a dropdown for the different subjects to keep it minimal and allow easy navigation. 
+- The hero image was chosen as the colours were consistent with the colour scheme. It also helps make the purpose of the website clear by containing items associated with working / planning lessons as a teacher.
+- I wanted my hero image fairly bright to make the site welcoming. I added a transparent overlay to make it dark enough to read text over it as well as a dark transparent background to the text overlay itself so the text stands out and is readable. 
 - The subject cards are on the index page as well as the navigation bar to encourage first time users to click on them and look through the different resources. 
-- The uploaded resources were displayed in cards to start with. However, these looked messy as they were large and different sizes. I decided to change to a table and make the whole row selectable so users could view more information. 
-- The downlaod option is on the resources table as well as on the individual resource view. This is because some users will want to download after seeing the title/description without wanting to view any more information. 
-- I kept the table the same when viewing all resources for subjects to keep a consistent feel. 
+- The resources were displayed as cards to start with. However, these looked messy as they were large and all different sizes. I decided to change them to a table to give a more consistent and clear layout. I made the whole row selectable so users could view more information easily without having to search for something to click. 
+- The downlaod option is on the resources table for large screens. The table columns overlapped on smaller screens so I removed unneccessary details from the table. Users can still click to view the detailed resource information from the table. 
 
 
 ## Features
@@ -137,42 +136,148 @@ The font Franklin Gothic was chosen for headers and buttons as it is a bold sans
 <details>
 <summary>Home Page</summary>
 
-- 
+- The home page features a hero image with a text overlay to convey an immediate aim of the website - to help teachers plan lessons. The image was chosen to be bright and eye catching and is something all teachers can relate to. 
+
+
+- It contains a promotion table, which is common on websites that explains the advantages of the using the website. This is responsive and becomes a column on smaller screens to stop the columns from becoming too thin. 
+
+- The divider was created to clearly divide the home page into the 3 sections while adding a pop of colour. 
+
+- There are cards at the bottom of the page linking to the resources for the 3 different subjects. These change colour when a mouse hovers over them so it's clear they are links. 
 
 </details>
 
-#### Sign Up
+<details>
+<summary>Navigation Bar</summary>
 
-#### Login
+- The navigation bar is responsive and becomes a clickable icon on small screens to stop the buttons from becoming too crowded and overlapping each other. 
 
-#### Profile
+- The resources dropdown to keep the buttons very clear and users can jump to the page they want quickly. 
 
-#### Edit Profile
+- The bar is floating so it can be seen when a user scrolls down a page so navigation to another page is quick. 
+</details>
 
-#### Add Resource
+<details>
+<summary>Footer</summary>
 
-#### Edit Resource
+- The footer is a contrasting colour to the rest of the site. This is because it is fixed to the bottom of the page so it's not in the way, particularly on smaller screen sizes. Therefore I wanted it obvious when a user reached it. 
 
-#### Delete Modal
+- There is a link to my github, which opens on a new tab as it isn't part of the site. The link subtly changes colour when the mouse hovers over it so user know it is a link. 
+</details>
 
-#### Subject Pages
+<details>
+<summary>Sign Up Form</summary>
 
-#### Comments
+- The sign up form has clear labels above the inputs. There are stars on the right to show all the fields are required.
 
-#### Logout
+- The form has been styled as a card with a white background to stand out from the background and also make the grey text more readable. 
 
-#### 404 Page
+- The form has validation checks that include a user cannot be created if the username or email already exist in the database, or if the passwords entered do not match. 
+
+- If an invalid form is submitted a message is flashed to the user explaining what went wrong. 
+
+- The form contains a cancel button so the user can navigate back to the home page if they decide they don't want to sign up yet. 
+
+- When a valid form is submitted, the user is logged in and directed to their profile. A success message is flashed to the user that they logged in. 
+</details>
+
+<details>
+<summary>Login Form</summary>
+
+- The login form is styled to look the same as the sign up form for consistency. 
+
+- The form checks values against the database and if the email doesn't exist or the password is incorrect, an error message is flashed to the user. 
+
+- The user can click cancel to redirect to the home page if they decide not to log in. 
+
+- If a valid form is submitted, users are directed to their profile and a success message is flashed to the user that they logged in. 
+</details>
+
+<details>
+<summary>Profile</summary>
+
+- The profile displays a welcome message to the user, displaying their username so it's evident who they are logged in as. 
+
+- There is a button enabling users to edit their profile. This is at the top right, which is the position of a lot of edit buttons so users will instinctively look near the top of the screen. 
+
+- Beneath the heading 'Your Resources' is a button to add a resource. It was placed here so it it clear to users they are adding a resource. 
+
+- Beneath this button is a table displaying the resources uploaded by the user. This contains key information as well as a download button so users can download the file again if they want to. 
+
+- The table rows subtly change colour when the mouse hovers over them so show which row is selected, which makes it easier to read across the row and also shows that it can be clicked. The rows open up the detailed resource view for the resource clicked. 
+
+- There is a comments table so users can navigate to comments they have written in case they want to edit or delete a comment or see if another user has also commented on the same resource. Each row changes colour again and can be clicked on to open the resource the comment is on. 
+
+</details>
+
+<details>
+<summary>Edit Profile</summary>
+
+- The edit profile form displays the user's current username and email so they can see what details they already have uploaded. 
+
+- The fields that are filled in will be changed and any fields left blank will stay as the existing details. 
+
+- A user who tried to edit the profile of another user will not be authorized and the form will not be submitted. 
+
+- This page also contains the delete profile button. It is on this page so it isn't encouraged by being on a main page, but it is on a page users will look. 
+
+- If users fill in a field but then click cancel, they will be redirected back, the form will not be submitted and their details will stay the same. 
+</details>
+
+<details>
+<summary>Delete Profile</summary>
+- The delete profile button opens up a modal. This is styled consistently with the webiste scheme. If users click no or anywhere around the modal their profile will not be deleted. If they click yes, their profile will be removed from the database and they are redirected home. 
+</details>
+
+<details>
+<summary>Add Resource</summary>
+
+- The add resource form is clear 
+</details>
+
+<details>
+<summary>Edit Resource</summary>
+
+</details>
+
+<details>
+<summary>Delete Resource</summary>
+
+</details>
+
+<details>
+<summary>Subject Pages</summary>
+
+</details>
+
+<details>
+<summary>Detailed Resource View</summary>
+
+</details>
+
+<details>
+<summary>Comments</summary>
+
+</details>
+
+<details>
+<summary>Logout</summary>
+
+</details>
+
+<details>
+<summary>404 Page</summary>
+
+- I created a custom 404 page to maintain site-wide consistency when a page that doesn't exist is loaded. It contains the link to the home page as well as the navbar users can use to navigate. 
+</details>
 
 ### Future Features
 
-- images of documents if more time to implement for all the types of documents that would be uploaded
-- love button
-- upload more than 1 file for each resource and be able to add or delete individual files from the resource.
-- add many to many table to add extra filters
-- edit comments on the same page
-- Add pagination to tables
-- Order results by date
-
+- Images of documents if more time to implement for all the types of documents that could be uploaded. 
+- If more time I would add the ability to upload more than 1 file for each resource and be able to add or delete individual files from the resource.
+- Add a love button to show users liked the resource without having to leave a comment. Resources could then be ordered by how liked they are.
+- The ability to edit comments inline on the same page without being redirected to a new page after editing them. This would make the user experience much smoother. 
+- Add pagination to tables so when there are lots of resources there won't be a very long page to scroll down. 
 
 
 ## Testing 

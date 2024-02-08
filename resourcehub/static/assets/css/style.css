@@ -430,7 +430,7 @@ form label {
   font-size: 20px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 992px) {
   .modal-content h4 {
     font-size: 20px;
     padding-bottom: 0;
@@ -444,6 +444,12 @@ form label {
   .large-comment-table {
     display: none;
   }
+  .promo-header {
+    height: auto;
+  }
+  .promo-text {
+    margin-bottom: 100px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -452,7 +458,7 @@ form label {
   }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 993px) {
   .small-resource-table {
     display: none;
   }
@@ -464,12 +470,6 @@ form label {
 @media screen and (max-width: 600px) {
   .small-text {
     font-size: 0.65rem;
-  }
-  .promo-header {
-    height: auto;
-  }
-  .promo-text {
-    margin-bottom: 100px;
   }
   .subject-card {
     padding: 0;
