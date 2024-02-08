@@ -172,9 +172,9 @@ def delete_profile(user_id):
             flash("User not found", category="error")
     else:
         flash(
-            "Unauthorized action. You are not logged in as this user", 
-              category="error")
-    
+            "Unauthorized action. You are not logged in as this user",
+            category="error")
+
     return redirect(url_for("home"))
 
 
@@ -333,7 +333,7 @@ def delete_comment(id):
             flash("Comment successfully deleted", category="success")
         else:
             flash(
-                "Unauthorized action. You are not the author of the comment.", 
+                "Unauthorized action. You are not the author of the comment.",
                 category="error")
     else:
         flash("Comment not found", category="error")
@@ -364,11 +364,12 @@ def edit_comment(id):
                     flash("Comment text cannot be empty", category="error")
             else:
                 flash(
-                    "Unauthorized action. You are not the author of this comment.",
+                    "Unauthorized action. \
+                        You are not the author of this comment.",
                     category="error")
         else:
             flash("Comment not found.", category="error")
-            
+
         return redirect(url_for("profile"))
 
     return render_template(
@@ -482,9 +483,10 @@ def edit_resource(resource_id):
             db.session.commit()
             flash("Resource updated successfully", category="success")
             return redirect(url_for("view", resource_id=resource.id))
-        else: 
+        else:
             flash(
-                "Unauthorized action. You are not the author of this resource.",
+                "Unauthorized action. \
+                    You are not the author of this resource.",
                 category="error")
             return redirect(url_for("home"))
 
