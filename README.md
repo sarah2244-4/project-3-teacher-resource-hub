@@ -77,11 +77,15 @@ As an existing user I want to be able to:
 
 ### Wireframes
 
-| Home Page | Sign Up | Profile | Subjects Pages |
-| :---: | :---: | :---: | :---: |
-| [Mobile](assets/images/wireframes/mobile-start.jpg) | [Mobile](assets/images/wireframes/mobile-game.jpg) | [Mobile](assets/images/wireframes/mobile-result.jpg) |
-| [Tablet](assets/images/wireframes/tablet-start.jpg) | [Tablet](assets/images/wireframes/tablet-game.jpg) |[Tablet](assets/images/wireframes/tablet-result.jpg)|
-| [Desktop](assets/images/wireframes/desktop-start.jpg) | [Desktop](assets/images/wireframes/desktop-game.jpg) | [Desktop](assets/images/wireframes/desktop-result.jpg) |
+| Index Page | Subject Pages | Sign Up | Login | Profile | Add Resource | View Resource | Edit Resource | Edit Profile | 
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-index.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-subject-page.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-register.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-login.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-profile.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-add-resource.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-view-resource.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-edit-resource.jpg) | [Mobile](resourcehub/static/assets/images/readme/wireframe-mobile-edit-profile.jpg) |
+| [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-index.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-subject-page.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-register.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-login.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-profile.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-add-resource.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-view-resource.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-edit-resource.jpg) | [Tablet](resourcehub/static/assets/images/readme/wireframe-tablet-edit-profile.jpg) |
+| [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-index.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-subject-page.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-register.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-login.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-profile.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-add-resource.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-view-resource.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-edit-resource.jpg) | [Desktop](resourcehub/static/assets/images/readme/wireframe-desktop-edit-profile.jpg) |
+
+- The wireframes did not include comments as these were a later addition. 
+- The about us section become a promo table on the index table and the education level buttons were changed to subjects as they felt more appropiate divisions. 
+- The resources were originally designed to be cards but during design these were changed to a table to give a much cleaner and user-friendly view. 
 
 ### Database 
 
@@ -468,6 +472,16 @@ from taskmanager import db
 db.create_all()
 ```
 - The site has now been successfully deployed
+- The subjects and education levels need to be added manually. Open ElephantSQL and navigate to 'Browser'
+- To add the subjects type in 
+```
+INSERT INTO subject (subject_name) VALUES ('Biology'), ('Chemistry'), ('Physics'); 
+```
+- To add the education levels type in
+```
+INSERT INTO subject (subject_name) VALUES ('KS3'), ('GCSE'), ('AS-Level'), ('A-Level'); 
+```
+- The two database tables now contain the correct rows and the site is ready to use
 
 ### Local Source Files
 
