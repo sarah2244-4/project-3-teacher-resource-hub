@@ -89,7 +89,41 @@ As an existing user I want to be able to:
 
 ### Database 
 
-I planned out the database before beginning the project with defined relationships. The site uses a relational database due to the ability to link tables together. 
+I planned out the database before beginning the project with defined relationships. The site uses a relational database due to the ability to link tables together. There are 5 entities in total. 
+
+![Entity relationship diagram](resourcehub/static/assets/images/readme/erd.png)
+
+#### User
+
+The user's primary key is a unique id that is auto-incrmemented as a new user is created. The user will also need to input a unique username and email. They will also add a password. This is the text type due to the long length of the encrypted password.
+
+It has a one-to-many relationship with the resource model and a one-to-many relationship with the comment model so a user can create multiple resources and comments. 
+
+#### Resource
+
+The resource model has an auto-incrememnting id as its primary key. It includes a resource title, description, file and data that will be added by the user upon file upload. The file attribute is the filename and the data attribute is a large binary type that contains the file itself. Both the file and data will be stored upon upload and transferred to a user when downlaoded. The date created column will be automatically generated upon creation. 
+
+It also has the foreign keys user id, subject id and education id to like it to the user who created the file and the subject and education level, allowing it to be categorised by these. 
+
+It has a one-to-many relationship with the comment model so it can have more than one comment associated with it. 
+
+#### Comment
+
+The comment model contains comment text that the user fills in. It also has an id that is a primary key that auto-incrememnts when a comment is added, and a date posted that is auto-generated at the time the comment is added. 
+
+There are two foreign keys - a user id and resource id that link a comment to the user who posts it and the resource it was added to. 
+
+#### Subject
+
+The subject model has an id, which is the auto-incrememnting primary key, and a subject name that will be added to the database. 
+
+It has a one-to-many relationship with the resource model so multiple resources can be linked to one subject. 
+
+#### Education Level
+
+The education level model has a level that will be added to the database. It's id is the primary key that auto-incremements when a level is added. 
+
+It has a one-to-many relationship with the resource model so multiple resources can be linked to one education level 
 
 ### Colour Scheme
 
